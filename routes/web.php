@@ -1,5 +1,8 @@
 <?php
 
+use App\Events\TaskEvent;
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,4 +15,9 @@
 */
 
 Route::get('/', 'AngularController@serve');
+
+Route::get('event', function(Request $request){
+    event(new TaskEvent('Hey how are you!!'));
+    echo "sending event";
+});
 
