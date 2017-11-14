@@ -1,3 +1,14 @@
-
-
-<p>Hi buddy!</p>
+<div>
+    <div>
+      <form (ngSubmit)="newSubscription()">
+        <input [(ngModel)]="newSearchTerm" placeholder="JavaScript" [ngModelOptions]="{standalone: true}" />
+        <button>Search</button>
+      </form>
+    </div>
+    <ul>
+        <li *ngFor="let channel of channels">
+            <h2>Tweets for {{ channel }}</h2>
+            ...tweets will be displayed here in due course...
+        </li>
+    </ul>
+</div>

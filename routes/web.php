@@ -21,3 +21,7 @@ Route::get('event', function(Request $request){
     echo "sending event";
 });
 
+Route::get('listen', function(Request $request){
+    return view('listenToBraodcast');
+});
+
