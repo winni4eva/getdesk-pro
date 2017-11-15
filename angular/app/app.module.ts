@@ -12,6 +12,7 @@ import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
 
 import {AuthService} from './auth/auth.service';
+import {StorageService} from './shared/storage/storage.service';
 import {routing} from './app.routes';
 
 import {HttpInterceptor} from './shared/http-interceptor/http-interceptor.service';
@@ -37,7 +38,7 @@ import {HttpInterceptorEvent} from './shared/http-interceptor/http-interceptor.e
   ],
   providers: [
     HttpInterceptorEvent,
-    AuthService,
+    AuthService, StorageService,
 
     // ProgressTabsNavigateEvent,
     // { provide: RequestOptions, useClass: MyRequestOptions },
