@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Exceptions\Auth\InvalidCredentialsException;
 
 class LoginController extends Controller
 {
@@ -35,5 +36,31 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * Login User
+     *
+     * @param Illuminate\Http\Request $request
+     * @return mixed
+     */
+    public function login(Request $request) : string
+    {
+        $credentials = $request->only('email','password');
+
+        if (!$token = $this->guard()->attempt($credentials)) 
+            throw new InvalidCredentialsException;
+
+        return $token;
+    }
+
+    /**
+     * Logout User
+     *
+     * @return mixed
+     */
+    public function logout()
+    {
+        return $this->guard()->logout();
     }
 }
