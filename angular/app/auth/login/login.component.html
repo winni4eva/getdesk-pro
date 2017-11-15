@@ -1,0 +1,29 @@
+<div>
+    <div>
+        <div class="col-sm-12">
+            <form autocomplete="off" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value, loginForm.valid)" novalidate>
+                <h1 class="heading">Sign In To Your Account</h1>
+                <div class="form-group">
+                    <input required type="text" name="email" formControlName="email" class="form-control" placeholder="Email Address">
+                    <p *ngIf="loginForm.controls.email.errors?.email" class="errorAlert">Email format should be <i>example@example.com</i>.</p>
+                </div>
+
+                <div class="form-group">
+                    <input required type="password" name="password" formControlName="password" class="form-control" placeholder="Password" >
+                    <small [hidden]="!loginForm.controls.password.hasError('minLength')" class="errorAlert">Password Should be 4 characters long!</small>
+
+                </div>
+
+                <div class="form-group">
+                    <div class="pull-left">Stay Signed In</div>
+                    <div class="pull-right"><a [routerLink]="['/reset_password']">Forgot Password?</a></div>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn ctm-btn-secondary col-sm-12" [disabled]="!loginForm.valid">Sign In</button>
+                </div>
+            </form>
+        </div>
+        <div class="row" style="display: block;">Don't have an account? <a [routerLink]="['/signup']">Sign Up</a></div>
+    </div>
+</div>

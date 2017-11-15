@@ -6,13 +6,21 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule, RequestOptions, XHRBackend, Http } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import {LoginComponent} from './auth/login/login.component';
+import {SignupComponent} from './auth/signup/signup.component';
+import {HeaderComponent} from './header/header.component';
+import {FooterComponent} from './footer/footer.component';
+
+import {AuthService} from './auth/auth.service';
+import {routing} from './app.routes';
 
 import {HttpInterceptor} from './shared/http-interceptor/http-interceptor.service';
 import {HttpInterceptorEvent} from './shared/http-interceptor/http-interceptor.event';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent, LoginComponent, SignupComponent, HeaderComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -20,7 +28,8 @@ import {HttpInterceptorEvent} from './shared/http-interceptor/http-interceptor.e
     FormsModule,
     HttpModule,
     MatButtonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    routing
   ],
   exports: [
     MatButtonModule,
@@ -28,7 +37,7 @@ import {HttpInterceptorEvent} from './shared/http-interceptor/http-interceptor.e
   ],
   providers: [
     HttpInterceptorEvent,
-    
+    AuthService,
 
     // ProgressTabsNavigateEvent,
     // { provide: RequestOptions, useClass: MyRequestOptions },
