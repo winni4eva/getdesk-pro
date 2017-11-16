@@ -1,6 +1,6 @@
-<!-- <div>
+<div>
     <div>
-        <div class="col-sm-12">
+        <div class="col-sm-6">
             <form autocomplete="off" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value, loginForm.valid)" novalidate>
                 <h1 class="heading">Sign In To Your Account</h1>
                 <div class="form-group">
@@ -16,7 +16,7 @@
 
                 <div class="form-group">
                     <div class="pull-left">Stay Signed In</div>
-                    <div class="pull-right"><a [routerLink]="['/reset_password']">Forgot Password?</a></div>
+                    <!-- <div class="pull-right"><a [routerLink]="['/reset_password']">Forgot Password?</a></div> -->
                 </div>
 
                 <div class="form-group">
@@ -26,4 +26,4 @@
         </div>
         <div class="row" style="display: block;">Don't have an account? <a [routerLink]="['/signup']">Sign Up</a></div>
     </div>
-</div> -->
+</div>

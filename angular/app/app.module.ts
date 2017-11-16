@@ -2,7 +2,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, RequestOptions, XHRBackend, Http } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -30,6 +30,7 @@ import {HttpInterceptorEvent} from './shared/http-interceptor/http-interceptor.e
     HttpModule,
     MatButtonModule,
     MatCheckboxModule,
+    ReactiveFormsModule,
     routing
   ],
   exports: [
