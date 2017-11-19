@@ -4,6 +4,8 @@ import {SignupInterface} from './signup.interface';
 import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
 import {CustomValidator} from '../../shared/validator/custom-validator.service';
+import {ToasterService} from 'angular2-toaster';
+//import {NotificationService} from '../../shared/notification/notification.service';
 
 @Component({
     selector: 'signup',
@@ -17,36 +19,41 @@ export class SignupComponent implements OnInit {
     
     private signupForm;
 
-    private _options = {
-        position: ["top", "right"],
-        timeOut: 9000,
-        lastOnBottom: true
-    }
-
     constructor(
-                private _loginService: AuthService,
-                private _router: Router) {
+                private _authService: AuthService,
+                private _router: Router,
+                private _toasterService: ToasterService
+            ) {
     }
 
     ngOnInit() {
         this.signupForm = new FormGroup({
+            first_name: new FormControl('', [Validators.required]),
+            last_name: new FormControl('', [Validators.required]),
             email: new FormControl('', [Validators.required, CustomValidator.mailFormat]),
             password: new FormControl('', [Validators.required,Validators.minLength(4)]),
             password_confirmation: new FormControl('', [Validators.required,Validators.minLength(4)])
         });
+               
     }
 
     signup(model: SignupInterface, isValid: boolean){
         if(!isValid) return;
         
-        this._loginService.postLogin(model)
+        this._authService.postSignup(model)
             .subscribe( (data: any) => {
-                console.log('signup succeeded..');
+                console.log(data);
                 //this._router.navigate(['/stores/'+ data.user[0].stores[0].id +'/home']);
             },
             error => {
-                console.log('signup in failed..');
+                console.log(error);
             })
+    }
+
+    popToast() {
+        //this._toasterService.pop('success', 'Args Title', 'Args Body');
+        //this._toasterService.pop('error', 'Args Title', 'Args Body');
+        //this._toasterService.pop('info', 'Args Title', 'Args Body');
     }
 
 }

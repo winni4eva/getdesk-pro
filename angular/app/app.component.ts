@@ -13,17 +13,17 @@ export class AppComponent implements OnInit{
   private messages = [];
 
   constructor() {
-    this.pusher = new Pusher('09e4f420472bbc06f762', {
-      encrypted: true,
-      //authEndpoint: '{{ baseUrl() }}/pusher_auth',
-      cluster: 'eu'
-    });  
+    // this.pusher = new Pusher('09e4f420472bbc06f762', {
+    //   encrypted: true,
+    //   //authEndpoint: '{{ baseUrl() }}/pusher_auth',
+    //   cluster: 'eu'
+    // });  
     
   }
 
   ngOnInit(){
     this.channels = [];
-    this.subscribeToChannel();
+    //this.subscribeToChannel();
     //console.log(this.messages);
   }
 

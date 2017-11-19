@@ -6,7 +6,7 @@ import {StorageService} from '../shared/storage/storage.service';
 @Injectable()
 export class AuthService{
 
-    private _loginApiUrl: string = '/api/login';
+    //private _loginApiUrl: string = '/api/login';
     
 
     public redirectUrl: string = '';
@@ -17,7 +17,13 @@ export class AuthService{
                 private _storage: StorageService){}
 
     postLogin(loginDetails){
-        return this._http.post( this._loginApiUrl, JSON.stringify( loginDetails ) )
+        return this._http.post( '/api/login', JSON.stringify( loginDetails ) )
+                    .map(this.extractData)
+                    .catch(this.handleError);
+    }
+
+    postSignup(signupDetails){
+        return this._http.post( '/api/signup', JSON.stringify( signupDetails ) )
                     .map(this.extractData)
                     .catch(this.handleError);
     }

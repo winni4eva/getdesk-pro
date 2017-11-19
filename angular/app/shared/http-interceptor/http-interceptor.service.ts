@@ -94,8 +94,9 @@ export class HttpInterceptor extends Http{
     intercept(observable: Observable<Response>): Observable<any> {
 
         return observable.catch((err, source) => {
-            console.log("intercept response")
-            this.customHtttp.requestStatusEvent("");
+            console.log("intercept response");
+            console.log(err);
+            //this.customHtttp.requestStatusEvent("");
 
             if (err.status  == 401) {
                 //this._localStorage.remove('token');

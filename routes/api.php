@@ -22,6 +22,8 @@ Route::group(['namespace' => 'Auth'], function () {
         /** Auth Routes */
         Route::post('login', 'LoginController@login');
         Route::get('logout', 'LoginController@logout');
+
+        Route::post('signup', 'RegisterController@create');
     
         /** Password Reset Routes */
         //Route::post("password/reset", "ResetPasswordController@reset");

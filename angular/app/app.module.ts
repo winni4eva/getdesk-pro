@@ -10,18 +10,22 @@ import {LoginComponent} from './auth/login/login.component';
 import {SignupComponent} from './auth/signup/signup.component';
 import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
+import {HomeComponent} from './home/home.component';
 
 import {AuthService} from './auth/auth.service';
 import {StorageService} from './shared/storage/storage.service';
+//import {NotificationService} from './shared/notification/notification.service';
 import {routing} from './app.routes';
 
 import {HttpInterceptor} from './shared/http-interceptor/http-interceptor.service';
 import {HttpInterceptorEvent} from './shared/http-interceptor/http-interceptor.event';
+//import {SimpleNotificationsModule,NotificationsService,PushNotificationsModule} from 'angular2-notifications';
+import {ToasterModule, ToasterService, ToasterContainerComponent} from 'angular2-toaster';
 
 @NgModule({
   declarations: [
     AppComponent, LoginComponent, SignupComponent, HeaderComponent,
-    FooterComponent,
+    FooterComponent, HomeComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -31,7 +35,9 @@ import {HttpInterceptorEvent} from './shared/http-interceptor/http-interceptor.e
     MatButtonModule,
     MatCheckboxModule,
     ReactiveFormsModule,
-    routing
+    routing,
+    BrowserAnimationsModule,
+    ToasterModule,
   ],
   exports: [
     MatButtonModule,
@@ -39,7 +45,7 @@ import {HttpInterceptorEvent} from './shared/http-interceptor/http-interceptor.e
   ],
   providers: [
     HttpInterceptorEvent,
-    AuthService, StorageService,
+    AuthService, StorageService, ToasterService,
 
     // ProgressTabsNavigateEvent,
     // { provide: RequestOptions, useClass: MyRequestOptions },
