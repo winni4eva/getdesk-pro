@@ -43,16 +43,16 @@ export class SignupComponent implements OnInit {
         this._authService.postSignup(model)
             .subscribe( (data: any) => {
                 console.log(data);
+                this._toasterService.pop('success', 'Signup', data.success);
                 //this._router.navigate(['/stores/'+ data.user[0].stores[0].id +'/home']);
             },
             error => {
                 console.log(error);
+                this._toasterService.pop('error', 'Signup', error);
             })
     }
 
     popToast() {
-        //this._toasterService.pop('success', 'Args Title', 'Args Body');
-        //this._toasterService.pop('error', 'Args Title', 'Args Body');
         //this._toasterService.pop('info', 'Args Title', 'Args Body');
     }
 

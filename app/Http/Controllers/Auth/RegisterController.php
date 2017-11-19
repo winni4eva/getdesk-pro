@@ -66,15 +66,15 @@ class RegisterController extends Controller
         $validator = $this->validator($request->all());
 
         if($validator->fails())
-            return response()->json($validator->errors(), 403);
-        return response()->json(['success'=>'User registered successfully...'], 403);
-        
-        //$errors = $validator->errors();
-        //logger($errors);
+            return response()->json(["error"=>$validator->errors()->first()], 403);
+
         // return User::create([
         //     'name' => $data['name'],
         //     'email' => $data['email'],
         //     'password' => bcrypt($data['password']),
         // ]);
+        
+        return response()->json(['success'=>'User registered successfully...'], 200);
+        
     }
 }
