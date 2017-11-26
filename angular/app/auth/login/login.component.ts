@@ -4,6 +4,7 @@ import {LoginInterface} from './login.interface';
 import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
 import {CustomValidator} from '../../shared/validator/custom-validator.service';
+import {ToasterService} from 'angular2-toaster';
 
 @Component({
     selector: 'login',
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit {
 
     constructor(
                 private _loginService: AuthService,
-                private _router: Router) {
+                private _router: Router,
+                private _toasterService: ToasterService) {
     }
 
     ngOnInit() {
@@ -42,13 +44,15 @@ export class LoginComponent implements OnInit {
         
         this._loginService.postLogin(model)
             .subscribe( (data: any) => {
-                console.log('logged in successfully..');
+                console.log(data);
+                this._toasterService.pop('success', 'Login', data.success);
                 //this._loadingService.stopLoading();
                 //this._loginService.setAuthUserData(data);
                 //this._router.navigate(['/stores/'+ data.user[0].stores[0].id +'/home']);
             },
             error => {
-                console.log('log in failed..');
+                console.log(error);
+                this._toasterService.pop('error', 'Login', error );
                 //this._loadingService.stopLoading()
                 //this._notification.error(error)
             })

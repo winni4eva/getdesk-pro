@@ -19,6 +19,8 @@ export class SignupComponent implements OnInit {
     
     private signupForm;
 
+    private _files;
+
     constructor(
                 private _authService: AuthService,
                 private _router: Router,
@@ -32,7 +34,8 @@ export class SignupComponent implements OnInit {
             last_name: new FormControl('', [Validators.required]),
             email: new FormControl('', [Validators.required, CustomValidator.mailFormat]),
             password: new FormControl('', [Validators.required,Validators.minLength(4)]),
-            password_confirmation: new FormControl('', [Validators.required,Validators.minLength(4)])
+            password_confirmation: new FormControl('', [Validators.required,Validators.minLength(4)]),
+            image: new FormControl('')
         });
                
     }
@@ -40,7 +43,7 @@ export class SignupComponent implements OnInit {
     signup(model: SignupInterface, isValid: boolean){
         if(!isValid) return;
         
-        this._authService.postSignup(model)
+        this._authService.postSignup(model, this._files)
             .subscribe( (data: any) => {
                 console.log(data);
                 this._toasterService.pop('success', 'Signup', data.success);
@@ -48,8 +51,14 @@ export class SignupComponent implements OnInit {
             },
             error => {
                 console.log(error);
-                this._toasterService.pop('error', 'Signup', error);
+                //this._toasterService.pop('error', 'Signup', error);
             })
+    }
+
+    onChange(event) {
+        var files = event.srcElement.files;
+        this._files = files;
+
     }
 
     popToast() {

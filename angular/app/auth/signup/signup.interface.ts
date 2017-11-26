@@ -12,4 +12,6 @@ export interface SignupInterface {
 
     password_confirmation: string;
 
+    image: any;
+
 }

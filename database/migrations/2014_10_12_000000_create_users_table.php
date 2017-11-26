@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('profile_img_path');
             $table->rememberToken();
+            $table->timestamp('deleted_at')->nullable()->default('2000-01-01 12:00:00');
             $table->timestamps();
         });
     }

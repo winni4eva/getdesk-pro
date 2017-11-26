@@ -22,10 +22,50 @@ export class AuthService{
                     .catch(this.handleError);
     }
 
-    postSignup(signupDetails){
-        return this._http.post( '/api/signup', JSON.stringify( signupDetails ) )
-                    .map(this.extractData)
-                    .catch(this.handleError);
+    postSignup(signupDetails, files){
+
+        return Observable.create(observer => {
+            
+            let formData: FormData = new FormData(),
+            xhr: XMLHttpRequest = new XMLHttpRequest();
+            formData.append("first_name", signupDetails.first_name);
+            formData.append("last_name", signupDetails.last_name);
+            formData.append("email", signupDetails.email);
+            formData.append("password", signupDetails.password);
+            formData.append("password_confirmation", signupDetails.password_confirmation);
+            
+            if(files){
+                for (let i = 0; i < files.length; i++) {
+                    //console.log(files[i]);
+                    formData.append("profile_img_path", files[i], files[i].name);
+                }
+            }
+
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        observer.next(JSON.parse(xhr.response));
+                        observer.complete();
+                    } else {
+                        observer.error(xhr.response);
+                    }
+                }
+            };
+
+            //xhr.upload.onprogress = (event) => {
+                //this.progress = Math.round(event.loaded / event.total * 100);
+
+                //this.progressObserver.next(this.progress);
+            //};
+
+            xhr.open('POST', '/api/signup' , true);
+            let authToken = 'Bearer '  +  localStorage.getItem('gdToken');
+            xhr.setRequestHeader('Authorization', authToken );
+            xhr.setRequestHeader('Accept', 'application/json' );
+            xhr.send(formData);
+
+        }).map(this.extractData)
+        .catch(this.handleError);
     }
  
     isLoggedIn(){

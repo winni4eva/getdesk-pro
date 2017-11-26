@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use App\Exceptions\Auth\InvalidCredentialsException;
 use Illuminate\Http\Request;
 use Exception;
+use App\Exceptions\Auth\InvalidCredentialsException;
 
 class LoginController extends Controller
 {
@@ -48,15 +48,16 @@ class LoginController extends Controller
      */
     public function login(Request $request) : string
     {
-        logger("made it to login");
+        logger($request->all());
         $credentials = $request->only('email','password');
 
         if (!$token = $this->guard()->attempt($credentials)) 
-            throw new Exception("Invalid login credentials", 403);
-            
-        //throw new InvalidCredentialsException;
+            throw new InvalidCredentialsException(401);
 
-        return $token;
+        $user = $this->guard()->user();
+
+        return response()->json(compact(['user','token']));
+            
     }
 
     /**

@@ -44,6 +44,18 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if($exception instanceof Tymon\JWTAuth\Exceptions\TokenExpiredException)
+        {
+            return response()->json( $this->errorMessage('token_expired'), 401 );
+        } 
+        else if ($exception instanceof Tymon\JWTAuth\Exceptions\TokenInvalidException || get_class($exception) == 'Tymon\JWTAuth\Exceptions\TokenInvalidException')
+        {
+            return response()->json( $this->errorMessage('token_invalid'), 401);
+        }
+        else if($exception instanceof Auth\InvalidCredentialsException) 
+        {
+            return response()->json($this->errorMessage($exception->getMessage()), 403 );
+        }
         return parent::render($request, $exception);
     }
 
@@ -61,5 +73,15 @@ class Handler extends ExceptionHandler
         }
 
         return redirect()->guest(route('login'));
+    }
+
+    /**
+     * Create message for error response.
+     *
+     * @param  string $message
+     * @return array $message
+     */
+    private function errorMessage($message = "Something unusual happened"){
+        return ['error' => $message];
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use App\Domain\Services\Auth\AuthService;
 
 class RegisterController extends Controller
 {
@@ -31,13 +32,28 @@ class RegisterController extends Controller
     protected $redirectTo = '/home';
 
     /**
+     * .
+     *
+     * @var string
+     */
+    protected $directorySeparator = DIRECTORY_SEPARATOR;
+
+     /**
+     * .
+     *
+     * @var string
+     */
+    protected $authService;
+
+    /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(AuthService $authService)
     {
         $this->middleware('guest');
+        $this->authService = $authService;
     }
 
     /**
@@ -49,9 +65,11 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'profile_img_path' => 'required|mimes:jpeg,png'
         ]);
     }
 
@@ -59,22 +77,48 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return User
+     * @return Response
      */
     public function create(Request $request)
     {
+    
         $validator = $this->validator($request->all());
 
         if($validator->fails())
-            return response()->json(["error"=>$validator->errors()->first()], 403);
+            return response()->json(["error"=> $validator->errors()->first()], 403);
 
-        // return User::create([
-        //     'name' => $data['name'],
-        //     'email' => $data['email'],
-        //     'password' => bcrypt($data['password']),
-        // ]);
+        $profile_img_path = $this->storeProfileImage( $request );
+
+        User::create(collect($request)->put('profile_img_path', $profile_img_path)->all());
+
+        //$credentials = $request->only('email','password');
         
+        //$token = $this->authService->loginUser($credentials);
+
         return response()->json(['success'=>'User registered successfully...'], 200);
         
     }
+
+    /**
+     * Store a users profile image.
+     *
+     * @param  array  $data
+     * @return string $imageUrl
+     */
+    protected function storeProfileImage($request)
+    {
+        $image = $request->file('profile_img_path');
+
+        $storagePath = public_path()."{$this->directorySeparator}img{$this->directorySeparator}profile{$this->directorySeparator}".$request->get('email');
+
+        if(! file_exists($storagePath))
+            mkdir($storagePath, 0777, true);
+        
+        $img_path = $image->move($storagePath, $image->getClientOriginalName());
+
+        $imageUrl = "img{$this->directorySeparator}profile{$this->directorySeparator}".$request->get('email').'/'.$image->getClientOriginalName();
+
+        return $imageUrl;   
+    }
+
 }
