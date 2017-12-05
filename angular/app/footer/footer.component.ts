@@ -3,7 +3,7 @@ import {FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import {Router} from '@angular/router';
 
 @Component({
-    selector: 'footer',
+    selector: 'dash-footer',
     templateUrl: './footer.component.html'
 })
 export class FooterComponent implements OnInit {

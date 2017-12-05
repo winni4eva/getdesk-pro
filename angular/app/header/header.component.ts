@@ -3,7 +3,7 @@ import {FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import {Router} from '@angular/router';
 
 @Component({
-    selector: 'header',
+    selector: 'dash-header',
     templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {

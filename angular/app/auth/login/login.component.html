@@ -1,4 +1,4 @@
-<div style="margin-left:25%;margin-top:5%">
+<!-- <div style="margin-left:25%;margin-top:5%">
     <div>
         <div class="col-sm-6">
             <form autocomplete="off" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value, loginForm.valid)" novalidate>
@@ -16,7 +16,7 @@
 
                 <div class="form-group">
                     <div class="pull-left">Stay Signed In</div>
-                    <!-- <div class="pull-right"><a [routerLink]="['/reset_password']">Forgot Password?</a></div> -->
+                    <div class="pull-right"><a [routerLink]="['/reset_password']">Forgot Password?</a></div>
                 </div>
 
                 <div class="form-group">
@@ -25,5 +25,48 @@
             </form>
         </div>
         <div class="row" style="display: block;">Don't have an account? <a [routerLink]="['/signup']">Sign Up</a></div>
+    </div>
+</div> -->
+
+<div style="background-color:#F7F7F7 !important">
+    
+    <a class="hiddenanchor" id="toregister"></a>
+    <a class="hiddenanchor" id="tologin"></a>
+
+    <div id="wrapper">
+        <div id="login" class="animate form">
+        
+            <section class="login_content">
+                <form autocomplete="off" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value, loginForm.valid)" novalidate>
+                    <h1>Login Form</h1>
+                    <div>
+                        <input required type="email" name="email" formControlName="email" class="form-control" placeholder="Email Address">
+                        <small *ngIf="loginForm.controls.email.errors?.email" class="errorAlert">Email format should be <i>example@example.com</i>.</small>
+                    </div>
+                    <div>
+                        <input required type="password" name="password" formControlName="password" class="form-control" placeholder="Password" >
+                        <small [hidden]="!loginForm.controls.password.hasError('minLength')" class="errorAlert">Password Should be 4 characters long!</small>
+                    </div>
+                    <!-- <p>Not A Member? <a href="signup.php"><b>Sign Up</b></a></p> -->
+                    <!-- <p><a href=""><b>Back To Site</b></a></p> -->
+                    <div class="form-group">  
+                          <div><button type="submit" name="login" class="btn btn-success" [disabled]="!loginForm.valid"><span class="fa fa-user"></span> Login</button></div>  
+                     </div>  
+                     <a [routerLink]="['/signup']" class="btn btn-primary"><span class="fa fa-arrow-right"></span> Sign Up</a>
+                    <div class="clearfix"></div>
+                    <div class="separator">
+
+                        <div class="clearfix"></div>
+                        <br />
+                        <div>
+                            <p>©2017 All Rights Reserved.</p>
+                        </div>
+                    </div>
+                </form>
+                <!-- form -->
+            </section>
+            <!-- content -->
+        </div>
+        
     </div>
 </div>

@@ -19,18 +19,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['namespace' => 'Auth'], function () {
     
-        /** Auth Routes */
-        Route::post('login', 'LoginController@login');
-        Route::get('logout', 'LoginController@logout');
+    /** Auth Routes */
+    Route::post('login', 'LoginController@login')->name('login');
+    Route::get('logout', 'LoginController@logout');
 
-        Route::post('signup', 'RegisterController@create');
+    Route::post('signup', 'RegisterController@create');
+
+    /** Password Reset Routes */
+    //Route::post("password/reset", "ResetPasswordController@reset");
+    //Route::post("password/reset/{token}", "ResetPasswordController@resetPassword");
     
-        /** Password Reset Routes */
-        //Route::post("password/reset", "ResetPasswordController@reset");
-        //Route::post("password/reset/{token}", "ResetPasswordController@resetPassword");
-    
-    });
+});
 
 Route::group(['prefix' => 'v1', 'namespace' => 'Api\V1', 'middleware' => 'auth:api'], function () {
-
+    Route::get('user','TestController');
+    //Route::post('user','TestController');
 });

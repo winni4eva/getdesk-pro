@@ -11,6 +11,7 @@ import {SignupComponent} from './auth/signup/signup.component';
 import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
 import {HomeComponent} from './home/home.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
 
 import {AuthService} from './auth/auth.service';
 import {StorageService} from './shared/storage/storage.service';
@@ -25,7 +26,7 @@ import {ToasterModule, ToasterService, ToasterContainerComponent} from 'angular2
 @NgModule({
   declarations: [
     AppComponent, LoginComponent, SignupComponent, HeaderComponent,
-    FooterComponent, HomeComponent,
+    FooterComponent, HomeComponent, DashboardComponent,
   ],
   imports: [
     BrowserAnimationsModule,

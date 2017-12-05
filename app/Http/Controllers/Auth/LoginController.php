@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Exception;
 use App\Exceptions\Auth\InvalidCredentialsException;
+use JWTAuth;
 
 class LoginController extends Controller
 {
@@ -20,8 +21,6 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-
-    use AuthenticatesUsers;
 
     /**
      * Where to redirect users after login.
@@ -51,10 +50,10 @@ class LoginController extends Controller
         logger($request->all());
         $credentials = $request->only('email','password');
 
-        if (!$token = $this->guard()->attempt($credentials)) 
+        if (!$token = JWTAuth::attempt($credentials)) 
             throw new InvalidCredentialsException(401);
 
-        $user = $this->guard()->user();
+        $user = [];//$this->guard()->user();
 
         return response()->json(compact(['user','token']));
             

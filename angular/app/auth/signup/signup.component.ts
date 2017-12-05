@@ -51,7 +51,7 @@ export class SignupComponent implements OnInit {
             },
             error => {
                 console.log(error);
-                //this._toasterService.pop('error', 'Signup', error);
+                this._toasterService.pop('error', 'Signup', error);
             })
     }
 
