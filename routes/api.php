@@ -33,5 +33,4 @@ Route::group(['namespace' => 'Auth'], function () {
 
 Route::group(['prefix' => 'v1', 'namespace' => 'Api\V1', 'middleware' => 'auth:api'], function () {
     Route::get('user','TestController');
-    //Route::post('user','TestController');
 });

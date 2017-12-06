@@ -45,16 +45,18 @@ class LoginController extends Controller
      * @param Illuminate\Http\Request $request
      * @return mixed
      */
-    public function login(Request $request) : string
+    public function login(Request $request)
     {
-        logger($request->all());
+        //logger($request->all());
         $credentials = $request->only('email','password');
 
-        if (!$token = JWTAuth::attempt($credentials)) 
+        if(!$token = JWTAuth::attempt($credentials))
             throw new InvalidCredentialsException(401);
 
+        logger($token);
+        
         $user = [];//$this->guard()->user();
-
+        
         return response()->json(compact(['user','token']));
             
     }

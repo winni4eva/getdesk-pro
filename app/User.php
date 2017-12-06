@@ -16,7 +16,10 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use SoftDeletes, Notifiable;
+
+    protected $table = "users";
+
+    protected $primaryKey = "userId";
 
     /**
      * The attributes that are mass assignable.
