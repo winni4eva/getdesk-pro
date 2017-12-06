@@ -54,8 +54,8 @@ class LoginController extends Controller
             throw new InvalidCredentialsException(401);
 
         logger($token);
-        
-        $user = [];//$this->guard()->user();
+
+        $user = \Auth::user();
         
         return response()->json(compact(['user','token']));
             

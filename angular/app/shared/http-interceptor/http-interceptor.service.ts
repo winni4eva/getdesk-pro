@@ -85,7 +85,7 @@ export class HttpInterceptor extends Http{
         //}
         
         options.headers.append('Content-Type', 'application/json');
-        options.headers.append('Authorization', 'Bearer '  +  this._localStorage.get('token') );
+        options.headers.append('Authorization', 'Bearer '  +  this._localStorage.get('gdToken') );
 
         return options;
         
@@ -99,7 +99,7 @@ export class HttpInterceptor extends Http{
             //this.customHtttp.requestStatusEvent("");
 
             if (err.status  == 401) {
-                //this._localStorage.remove('token');
+                //this._localStorage.remove('gdToken');
                 //this._localStorage.remove('isAuthenticated');
                 //window.location.assign('/login');
                 return Observable.empty();

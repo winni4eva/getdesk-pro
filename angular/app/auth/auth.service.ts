@@ -73,9 +73,13 @@ export class AuthService{
     }
 
     setAuthUserData(data){
-        //this._storage.set('user', user);
-        //this._storage.set('token', data.token);
-        //this._storage.set('isAuthenticated', true);
+        this._storage.set('gdUser', data);
+        //this._storage.set('gdToken', data.token);
+    }
+
+    setAuthUserToken(token: string){
+        this._storage.set('gdToken', token);
+        this._storage.set('isAuthenticated', true);
     }
 
     private extractData(res: Response) {

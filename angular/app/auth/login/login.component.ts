@@ -39,22 +39,19 @@ export class LoginComponent implements OnInit {
 
     login(model: LoginInterface, isValid: boolean){
 
-        //this._loadingService.startLoading();
         if(!isValid) return;
         
         this._loginService.postLogin(model)
             .subscribe( (data: any) => {
                 console.log(data);
                 this._toasterService.pop('success', 'Login', data.success);
-                //this._loadingService.stopLoading();
-                //this._loginService.setAuthUserData(data);
-                //this._router.navigate(['/stores/'+ data.user[0].stores[0].id +'/home']);
+                this._loginService.setAuthUserData(data.user);
+                this._loginService.setAuthUserToken(data.token);
+                this._router.navigate(['/dashboard']);
             },
             error => {
                 console.log(error);
                 this._toasterService.pop('error', 'Login', error );
-                //this._loadingService.stopLoading()
-                //this._notification.error(error)
             })
     }
 
