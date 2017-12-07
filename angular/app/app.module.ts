@@ -15,6 +15,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 
 import {AuthService} from './auth/auth.service';
 import {StorageService} from './shared/storage/storage.service';
+import {DashboardService} from './dashboard/dashboard.service';
 //import {NotificationService} from './shared/notification/notification.service';
 import {routing} from './app.routes';
 
@@ -46,7 +47,7 @@ import {ToasterModule, ToasterService, ToasterContainerComponent} from 'angular2
   ],
   providers: [
     HttpInterceptorEvent,
-    AuthService, StorageService, ToasterService,
+    AuthService, StorageService, ToasterService, DashboardService,
 
     // ProgressTabsNavigateEvent,
     // { provide: RequestOptions, useClass: MyRequestOptions },

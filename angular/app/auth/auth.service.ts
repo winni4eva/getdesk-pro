@@ -73,7 +73,7 @@ export class AuthService{
     }
 
     setAuthUserData(data){
-        this._storage.set('gdUser', data);
+        this._storage.set('gdUser', JSON.stringify(data));
         //this._storage.set('gdToken', data.token);
     }
 

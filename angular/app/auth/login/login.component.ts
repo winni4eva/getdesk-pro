@@ -45,8 +45,10 @@ export class LoginComponent implements OnInit {
             .subscribe( (data: any) => {
                 console.log(data);
                 this._toasterService.pop('success', 'Login', data.success);
-                this._loginService.setAuthUserData(data.user);
-                this._loginService.setAuthUserToken(data.token);
+                if(data.user)
+                    this._loginService.setAuthUserData(data.user);
+                if(data.token)
+                    this._loginService.setAuthUserToken(data.token);
                 this._router.navigate(['/dashboard']);
             },
             error => {

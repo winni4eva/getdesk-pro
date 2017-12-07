@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -47,7 +47,7 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
-        //logger($request->all());
+        logger($request->all());
         $credentials = $request->only('email','password');
 
         if(!$token = JWTAuth::attempt($credentials))
