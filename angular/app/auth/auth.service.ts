@@ -22,6 +22,12 @@ export class AuthService{
                     .catch(this.handleError);
     }
 
+    getLogout(){
+        return this._http.get('/api/logout')
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
     postSignup(signupDetails, files){
 
         return Observable.create(observer => {

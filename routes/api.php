@@ -22,7 +22,6 @@ Route::group(['namespace' => 'Auth'], function () {
     /** Auth Routes */
     Route::post('login', 'LoginController@login')->name('login');
     Route::get('logout', 'LoginController@logout');
-
     Route::post('signup', 'RegisterController@create');
 
     /** Password Reset Routes */
@@ -32,5 +31,8 @@ Route::group(['namespace' => 'Auth'], function () {
 });
 
 Route::group(['prefix' => 'v1', 'namespace' => 'Api\V1', 'middleware' => 'auth:api'], function () {
-    Route::get('user','TestController');
+    Route::resource('categories','CategoriesController');
+    Route::resource('sub_categories','SubCategoriesController');
+    Route::resource('days','DaysController');
+    Route::resource('times','TimesController');
 });

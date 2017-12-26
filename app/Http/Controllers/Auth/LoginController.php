@@ -47,18 +47,14 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
-        logger($request->all());
         $credentials = $request->only('email','password');
 
         if(!$token = JWTAuth::attempt($credentials))
             throw new InvalidCredentialsException(401);
 
-        logger($token);
-
         $user = \Auth::user();
         
-        return response()->json(compact(['user','token']));
-            
+        return response()->json(compact(['user','token']));         
     }
 
     /**
@@ -68,6 +64,10 @@ class LoginController extends Controller
      */
     public function logout()
     {
-        return $this->guard()->logout();
+        logger("User logged out");
+        //return $this->guard()->logout();
+        JWTAuth::invalidate(JWTAuth::getToken());
+
+        return response()->json(['success'=>'User logged successfully...'], 200); 
     }
 }

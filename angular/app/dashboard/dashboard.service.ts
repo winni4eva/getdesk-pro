@@ -16,11 +16,11 @@ export class DashboardService{
     constructor(private _http: Http,
                 private _storage: StorageService){}
 
-    getTestUser(){
-        return this._http.get( '/api/v1/user')
-                    .map(this.extractData)
-                    .catch(this.handleError);
-    }
+    // getTestUser(){
+    //     return this._http.get( '/api/v1/user')
+    //                 .map(this.extractData)
+    //                 .catch(this.handleError);
+    // }
 
     private extractData(res: Response) {
         return res.json() || { };

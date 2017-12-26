@@ -1,149 +1,113 @@
-  
-    <div class="container body">
+<div class="col-md-3 left_col">
+        <div class="left_col scroll-view">
 
+            <div class="navbar nav_title" style="border: 0;">
+                <a href="" class="site_title"><i class="fa fa-home"></i> <span>GDesk</span></a>
+            </div>
+            <div class="clearfix"></div>
 
-        <div class="main_container">
-
-            <div class="col-md-3 left_col">
-                <div class="left_col scroll-view">
-
-                    <div class="navbar nav_title" style="border: 0;">
-                        <a href="" class="site_title"><i class="fa fa-home"></i> <span>Store</span></a>
-                    </div>
-                    <div class="clearfix"></div>
-
-                    <!-- menu prile quick info -->
-                    <div class="row profile">
-                        <div class="profile_pic">
-                            <img src="assets/images/user.png" alt="..." class="img-circle profile_img">
-                        </div>
-                        <div class="profile_info">
-                            <span>Welcome,</span>
-                            <h2>Adam Winni</h2>
-                        </div>
-                    </div>
-                    <!-- /menu prile quick info -->
-
-                    <br />
-
-                    <!-- sidebar menu -->
-                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-
-                        <div class="menu_section">
-                            <h3>MENU</h3>    
-                            <ul class="nav side-menu">
-                                <li><a href=""><i class="fa fa-dashboard"></i>Dashboard</a></li>
-                                <!-- <li><a><i class="fa fa-home"></i> Manage Rooms <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu" style="display: none">
-                                            <li><a href="rooms.php">Rooms</a>
-                                            </li>
-                                            <li><a href="room_types.php">Room Types</a>
-                                            </li>
-                                            <li><a href="discounts.php">Discounts</a>
-                                            </li>
-                                        </ul>
-                                </li> -->
-                                    
-                                <li><a href=""><i class="fa fa-certificate"></i> New Product</a></li> 
-                                <li><a href=""><i class="fa fa-edit"></i> Manage Product</a></li>  
-                                    
-                                
-
-                                <li><a href=""><i class="fa fa-code-fork"></i> Manage Categories</a></li>
-
-                                <li><a href=""><i class="fa fa-code-fork"></i> Manage Sub Categories</a></li>
-                                <li><a href=""><i class="fa fa-car"></i> Pending Orders</a></li>
-                                <li><a href=""><i class="fa fa-certificate"></i> Delivered Orders</a></li>
-                                <li><a href=""><i class="fa fa-home"></i> Back To Site</a></li>
-                            
-                                <li><a href=""><i class="fa fa-certificate"></i> Company Profile</a></li> 
-                        
-                                <li><a href=""><i class="fa fa-certificate"></i> New Product</a></li> 
-                                <li><a href=""><i class="fa fa-edit"></i> Manage Products</a></li>
-
-                                <li><a href=""><i class="fa fa-home"></i> Back To Site</a></li>
-
-                               
-
-                                
-                            </ul>
-                        </div>
-
-                    </div>
-                    <!-- /sidebar menu -->
-
-                    <!-- /menu footer buttons -->
-                    <div class="sidebar-footer hidden-small">
-                        <!-- <a data-toggle="tooltip" data-placement="top" title="Settings">
-                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                        </a>
-                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                        </a>
-                        <a data-toggle="tooltip" data-placement="top" title="Lock">
-                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-                        </a> -->
-                        <a data-toggle="modal" data-target="#logout">
-                            <span data-toggle="tooltip" data-placement="top" title="Logout" class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                        </a>
-                    </div>
-                    <!-- /menu footer buttons -->
+            <!-- menu prile quick info -->
+            <div class="row profile">
+                <div class="profile_pic">
+                    <img src="assets/images/user.png" alt="..." class="img-circle profile_img">
+                </div>
+                <div class="profile_info">
+                    <span>Welcome,</span>
+                    <h2>{{ userDetails?.first_name + ' ' + userDetails?.last_name || 'No User'}}</h2>
                 </div>
             </div>
+            <!-- /menu prile quick info -->
 
-            <!-- top navigation -->
-            <div class="top_nav">
+            <br />
 
-                <div class="nav_menu">
-                    <nav class="" role="navigation">
-                        <div class="nav toggle">
-                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-                        </div>
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="">
-                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <span class="fa fa-wrench"></span> Settings
-                                    <span class=" fa fa-angle-down"></span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
-                                    <li><a href=""><i class="fa fa-user pull-right"></i>   Profile</a>
+                <div class="menu_section">
+                    <h3>MENU</h3>    
+                    <ul class="nav side-menu">
+                        <!-- <li><a href="dashboard.php"><i class="fa fa-dashboard"></i>Dashboard</a></li> -->
+                        <!-- <li><a><i class="fa fa-home"></i> Manage Rooms <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu" style="display: none">
+                                    <li><a href="">Rooms</a>
                                     </li>
-                                    <li><a href="" data-toggle="modal" data-target="#logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    <li><a href="">Room Types</a>
+                                    </li>
+                                    <li><a href="">Discounts</a>
                                     </li>
                                 </ul>
-                            </li>
+                        </li> -->
+                        <!-- <li><a href="new_product.php"><i class="fa fa-certificate"></i> New Desk</a></li>  -->
+                        <li><a [routerLink]="['/dashboard/desks']"><i class="fa fa-edit"></i> Manage Desks</a></li>  
+                                   
+                                
+                        <!--
+                        <li><a href="categories.php"><i class="fa fa-code-fork"></i> Manage Categories</a></li>
 
+                        <li><a href="sub_cats.php"><i class="fa fa-code-fork"></i> Manage Sub Categories</a></li>
+                        <li><a href="pending.php"><i class="fa fa-car"></i> Pending Orders</a></li>
+                        <li><a href="delivered.php"><i class="fa fa-certificate"></i> Delivered Orders</a></li>
+                        <li><a href="index.php"><i class="fa fa-home"></i> Back To Site</a></li>
                             
+                        <li><a href="company.php"><i class="fa fa-certificate"></i> Company Profile</a></li> 
+                
+                        <li><a href="new_product.php"><i class="fa fa-certificate"></i> New Product</a></li> 
+                        <li><a href="manage_products.php"><i class="fa fa-edit"></i> Manage Products</a></li> -->
 
-                        </ul>
-                    </nav>
+                        <li><a href=""><i class="fa fa-home"></i> Back To Site</a></li> 
+                    </ul>
                 </div>
 
             </div>
-            <!-- /top navigation -->
+            <!-- /sidebar menu -->
 
+            <!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small">
+                <!-- <a data-toggle="tooltip" data-placement="top" title="Settings">
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                </a>
+                <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                    <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                </a>
+                <a data-toggle="tooltip" data-placement="top" title="Lock">
+                    <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                </a> -->
+                <a data-toggle="modal" data-target="#logout">
+                    <span data-toggle="tooltip" data-placement="top" title="Logout" class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                </a>
+            </div>
+            <!-- /menu footer buttons -->
+        </div>
+    </div>
 
-            <!-- page content -->
-            <div class="right_col" role="main">
-                 <!--sign out modal-->
-                <div class="modal fade" id="logout">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button class="close" data-dismiss="modal">&times;</button>
-                                
-                                <h4 class="modal-title"><span class="glyphicon glyphicon-off"></span> Log Out</h4>
-                            </div><!-- end modal-header -->
-                            <div class="modal-body">
-                                <p><b>Are You Sure?</b></p>                      
-                            </div><!-- end modal-body -->
-                            
-                            <div class="modal-footer">
-                                <form method="post">
-                                    <button type="submit" class="btn btn-success" name="btnLogout">Yes</button> <button class="btn btn-danger" data-dismiss="modal">No</button>
-                                </form>
-                            </div><!-- end modal-footer -->
-                        </div><!-- end modal-content -->
-                    </div><!-- end modal-dialog -->
-                </div><!-- end myModal -->
+    <!-- top navigation -->
+    <div class="top_nav">
+
+        <div class="nav_menu">
+            <nav class="" role="navigation">
+                <div class="nav toggle">
+                    <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                </div>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="">
+                        <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <span class="fa fa-wrench"></span> Settings
+                            <span class=" fa fa-angle-down"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
+                            <li><a href=""><i class="fa fa-user pull-right"></i>   Profile</a>
+                            </li>
+                            <li><a href="" data-toggle="modal" (click)="logout()"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    
+
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+    <!-- /top navigation -->

@@ -1,123 +1,9 @@
 
 <div class="container body">
 
-
     <div class="main_container">
-
-        <div class="col-md-3 left_col">
-            <div class="left_col scroll-view">
-
-                <div class="navbar nav_title" style="border: 0;">
-                    <a href="dashboard.php" class="site_title"><i class="fa fa-home"></i> <span>GDesk</span></a>
-                </div>
-                <div class="clearfix"></div>
-
-                <!-- menu prile quick info -->
-                <div class="row profile">
-                    <div class="profile_pic">
-                        <img src="assets/images/user.png" alt="..." class="img-circle profile_img">
-                    </div>
-                    <div class="profile_info">
-                        <span>Welcome,</span>
-                        <h2>{{userDetails?.last_name}}</h2>
-                    </div>
-                </div>
-                <!-- /menu prile quick info -->
-
-                <br />
-
-                <!-- sidebar menu -->
-                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-
-                    <div class="menu_section">
-                        <h3>MENU</h3>    
-                        <ul class="nav side-menu">
-                            <li><a href="dashboard.php"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-                            <!-- <li><a><i class="fa fa-home"></i> Manage Rooms <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu" style="display: none">
-                                        <li><a href="rooms.php">Rooms</a>
-                                        </li>
-                                        <li><a href="room_types.php">Room Types</a>
-                                        </li>
-                                        <li><a href="discounts.php">Discounts</a>
-                                        </li>
-                                    </ul>
-                            </li> -->    
-                            <li><a href="new_product.php"><i class="fa fa-certificate"></i> New Product</a></li> 
-                            <li><a href="manage_products.php"><i class="fa fa-edit"></i> Manage Product</a></li>  
-                                       
-                                    
-
-                            <li><a href="categories.php"><i class="fa fa-code-fork"></i> Manage Categories</a></li>
-
-                            <li><a href="sub_cats.php"><i class="fa fa-code-fork"></i> Manage Sub Categories</a></li>
-                            <li><a href="pending.php"><i class="fa fa-car"></i> Pending Orders</a></li>
-                            <li><a href="delivered.php"><i class="fa fa-certificate"></i> Delivered Orders</a></li>
-                            <li><a href="index.php"><i class="fa fa-home"></i> Back To Site</a></li>
-                                
-                            <li><a href="company.php"><i class="fa fa-certificate"></i> Company Profile</a></li> 
-                    
-                            <li><a href="new_product.php"><i class="fa fa-certificate"></i> New Product</a></li> 
-                            <li><a href="manage_products.php"><i class="fa fa-edit"></i> Manage Products</a></li>
-
-                            <li><a href="index.php"><i class="fa fa-home"></i> Back To Site</a></li> 
-                        </ul>
-                    </div>
-
-                </div>
-                <!-- /sidebar menu -->
-
-                <!-- /menu footer buttons -->
-                <div class="sidebar-footer hidden-small">
-                    <!-- <a data-toggle="tooltip" data-placement="top" title="Settings">
-                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Lock">
-                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-                    </a> -->
-                    <a data-toggle="modal" data-target="#logout">
-                        <span data-toggle="tooltip" data-placement="top" title="Logout" class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                    </a>
-                </div>
-                <!-- /menu footer buttons -->
-            </div>
-        </div>
-
-        <!-- top navigation -->
-        <div class="top_nav">
-
-            <div class="nav_menu">
-                <nav class="" role="navigation">
-                    <div class="nav toggle">
-                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-                    </div>
-
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="">
-                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <span class="fa fa-wrench"></span> Settings
-                                <span class=" fa fa-angle-down"></span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
-                                <li><a href="profile.php"><i class="fa fa-user pull-right"></i>   Profile</a>
-                                </li>
-                                <li><a href="" data-toggle="modal" data-target="#logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        
-
-                    </ul>
-                </nav>
-            </div>
-
-        </div>
-        <!-- /top navigation -->
-
+    
+    <dash-header></dash-header>
 
     <!-- page content -->
     <div class="right_col" role="main">
@@ -144,72 +30,12 @@
         </div><!-- end myModal -->
 
 
-<div class="panel panel-default col-lg-4 col-md-4 col-sm-12">
-    <div class="panel-body">
-        <h3><span class="fa fa-users"></span> Total Registered Users</h3>
-        <p align="right">2017-07-01</p>
-        <h1>87</h1>
-        <p align="right"><!-- <a href="empty_rooms.php">View All</a> --></p>
-    </div>
-</div>
+        <router-outlet></router-outlet>
 
-<div class="panel panel-default col-lg-4 col-md-4 col-sm-12">
-    <div class="panel-body">
-        <h3><span class="fa fa-star"></span> Total Products</h3>
-        <p align="right">2017-07-01</p>
-        <h1>76</h1>
-        <p align="right"><!-- <a href="empty_rooms.php">View All</a> --></p>
-    </div>
-</div>
+    <dash-footer></dash-footer>
 
-<div class="panel panel-default col-lg-4 col-md-4 col-sm-12">
-    <div class="panel-body">
-        <h3><span class="fa fa-code-fork"></span> Total Categories</h3>
-        <p align="right">2017-07-01</p>
-        <h1>56</h1>
-        <p align="right"><!-- <a href="empty_rooms.php">View All</a> --></p>
     </div>
-</div>
-
-<div class="panel panel-default col-lg-4 col-md-4 col-sm-12">
-    <div class="panel-body">
-        <h3><span class="fa fa-code-fork"></span> Total Sub Categories</h3>
-        <p align="right">2017-07-01</p>
-        <h1>234</h1>
-        <p align="right"><!-- <a href="empty_rooms.php">View All</a> --></p>
-    </div>
-</div>
-
-<div class="panel panel-default col-lg-4 col-md-4 col-sm-12">
-    <div class="panel-body">
-        <h3><span class="fa fa-star"></span> My Products</h3>
-        <p align="right">2017-07-01</p>
-        <h1>23</h1>
-        <p align="right"><!-- <a href="empty_rooms.php">View All</a> --></p>
-    </div>
-</div>
-
-<div class="panel panel-default col-lg-4 col-md-4 col-sm-12">
-    <div class="panel-body">
-        <h3><span class="fa fa-star"></span> My Products</h3>
-        <p align="right">2017-07-01</p>
-        <h1>45</h1>
-        <p align="right"><!-- <a href="empty_rooms.php">View All</a> --></p>
-    </div>
-</div>
-
-<footer>
-    <div class="">
-        <p class="pull-right">
-            <span class="lead"> <i class="fa fa-car"></i> Store</span>
-        </p>
-    </div>
-    <div class="clearfix"></div>
-</footer>
-<!-- /footer content -->
-
-</div>
-<!-- /page content -->
+    <!-- /page content -->
 
 </div>
 

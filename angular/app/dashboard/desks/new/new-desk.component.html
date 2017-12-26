@@ -1,0 +1,154 @@
+
+<div class="container-fluid">
+    
+    <div class="row" style="margin: 0px 10px 0px 80px">
+        <div class="">
+            <div class="card">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#details" aria-controls="details" role="tab" data-toggle="tab" (click)="_selectedTab='Details'">Details</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#location" aria-controls="location" role="tab" data-toggle="tab" (click)="_selectedTab='Location'">Location</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#pricing" aria-controls="pricing" role="tab" data-toggle="tab" (click)="_selectedTab='Pricing'">Pricing</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#images" aria-controls="images" role="tab" data-toggle="tab" (click)="_selectedTab='Images'">Images</a>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+
+                    <div role="tabpanel" class="tab-pane active" id="details">
+                        <div class="row">
+                            <h3 align="center">Desk Details</h3>
+                            <div class="col-md-12">
+
+                                <form [formGroup]="newDeskForm" (ngSubmit)="addDesk(newDeskForm.value, newDeskForm.valid)">
+                                    
+                                    <div formGroupName="details">
+
+                                        <div class="col-md-6">
+                                            <label for="name" >Venue Name*</label>
+                                            <input type="text" class="form-control" formControlName="name" placeholder="Enter Venue Name">
+                                            <br />
+
+                                            <!-- 
+                                            <label for="price" >Price*</label>
+                                            <input type="number" step="0.01" class="form-control" required [formControlName]="txtPrice" placeholder="Enter Price">
+                                            <br /> 
+                                            -->
+                                            
+                                            <label for="name">Category*</label>
+                                            <select class="form-control" formControlName="category_id">
+                                                <option value="">-- Select Category--</option>
+                                                <option value="category?.id" *ngFor="let category of categories">{{category?.name}}</option>
+                                            </select>
+                                            <br/>
+                            
+                                            <label>Sub Category*</label>
+                                            <select  class="form-control" formControlName="sub_category_id">
+                                                <option value="">-- Select Sub Category --</option>
+                                                <option value="category?.id" *ngFor="let category of subCategories">{{category?.name}}</option>
+                                            </select>
+                                            <br/>
+
+                                            <label>Number Of Occupants*</label>
+                                            <select  class="form-control" formControlName="number_of_occupants">
+                                                <option value="">-- Select Occupants --</option>
+                                                <option value="occupant" *ngFor="let occupant of occupants">{{occupant}}</option>
+                                            </select>
+                                            <br/>
+                            
+                                            <!-- <label>Description</label>
+                                            <textarea class="form-control" name="txtDescription"></textarea><br/>                  -->
+                                            <button class="btn btn-primary" type="submit" name="btnSave">Post</button>
+                                        </div>
+
+                                        <div class="col-md-6">  
+                                            <label>Opening Hours*</label>
+                                            <div class="row" formArrayName="opening_hours">
+
+                                                <div *ngFor="let opening_hour of newDeskForm.controls.details.controls.opening_hours.controls; let i=index" [formGroupName]="i" class="img-thumbnail" style="width:200%">
+
+                                                    <div class="pull-right">
+                                                        <span *ngIf="i > 0" 
+                                                            (click)="removeOpeningHour(i)"><i style="font-size:15px;cursor:pointer !important" class="fa-close"></i>
+                                                        </span>
+                                                    </div>
+
+                                                    <!-- <label>Day*</label> -->
+                                                    <select  class="form-control pull-left" style="width:25% !important" formControlName="day_id" required="">
+                                                        <option value="">-- Select Day --</option>
+                                                        <option [value]="day?.id" *ngFor="let day of days">{{day?.name}}</option>
+                                                    </select>
+
+                                                    <!-- <label>Start Time*</label> -->
+                                                    <select  class="form-control pull-left" style="width:25% !important" formControlName="times_id" required="">
+                                                        <option value="">-- Select Start Time --</option>
+                                                        <option [value]="time?.id" *ngFor="let time of times">{{time?.time +' '+ time?.period}}</option>
+                                                    </select>
+
+                                                    <!-- <label>End Time*</label> -->
+                                                    <select  class="form-control pull-left" style="width:25% !important" formControlName="end_time_id" required="">
+                                                        <option value="">-- Select End Time --</option>
+                                                        <option [value]="time?.id" *ngFor="let time of times">{{time?.time +' '+ time?.period}}</option>
+                                                    </select><br><br>
+                                                </div>
+
+                                                <a class="btn btn-default pull-right" (click)="addOpeningHour()">Add Opening Hour</a>
+                                            </div>
+                                            
+                                            <!-- <label>Select Image</label>
+                                            <div class="input-group image-preview">
+                                                    
+                                                <span class="input-group-btn">
+                                                    
+                                                    <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                                        <span class="glyphicon glyphicon-remove"></span> Clear
+                                                    </button>
+                                                    
+                                                    <div class="btn btn-default image-preview-input">
+                                                        <input type="file" accept="image/png, image/jpeg, image/gif" [formControlName]="end_time_id">
+                                                    </div><br>
+                                                </span>
+                                            </div> -->
+                                            
+                        
+                                        </div>
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id="location">
+                        <div class="row">
+                            <h4>My Name Is Winni</h4>
+                        </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id="pricing">
+                        <div class="row">
+                            <h4>My Name Is Junior</h4>
+                        </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id="images">
+                        <div class="row">
+                            <h4>My Name Is Troy</h4>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

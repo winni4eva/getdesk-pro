@@ -12,10 +12,19 @@ import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
 import {HomeComponent} from './home/home.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
+import {DeskComponent} from './dashboard/desks/desks.component';
+import {NewDeskComponent} from './dashboard/desks/new/new-desk.component';
+import {ReviewsComponent} from './dashboard/desks/reviews/reviews.component';
+import {ViewComponent} from './dashboard/desks/view/view.component';
+import {TabsComponent} from './shared/tabs/tabs.component';
+import {TabsContentComponent} from './shared/tabs/tabs-content/tabs-content.component';
+import {TabsHeaderComponent} from './shared/tabs/tabs-header/tabs-header.component';
 
 import {AuthService} from './auth/auth.service';
 import {StorageService} from './shared/storage/storage.service';
 import {DashboardService} from './dashboard/dashboard.service';
+import {LoginGuard} from './auth/guard/guard.service';
+import {DeskService} from './dashboard/desks/desks.service';
 //import {NotificationService} from './shared/notification/notification.service';
 import {routing} from './app.routes';
 
@@ -27,7 +36,9 @@ import {ToasterModule, ToasterService, ToasterContainerComponent} from 'angular2
 @NgModule({
   declarations: [
     AppComponent, LoginComponent, SignupComponent, HeaderComponent,
-    FooterComponent, HomeComponent, DashboardComponent,
+    FooterComponent, HomeComponent, DashboardComponent, DeskComponent,
+    NewDeskComponent, ReviewsComponent, ViewComponent, TabsComponent,
+    TabsContentComponent, TabsHeaderComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -48,6 +59,7 @@ import {ToasterModule, ToasterService, ToasterContainerComponent} from 'angular2
   providers: [
     HttpInterceptorEvent,
     AuthService, StorageService, ToasterService, DashboardService,
+    LoginGuard, DeskService,
 
     // ProgressTabsNavigateEvent,
     // { provide: RequestOptions, useClass: MyRequestOptions },

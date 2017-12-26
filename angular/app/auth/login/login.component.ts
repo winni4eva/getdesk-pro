@@ -5,6 +5,7 @@ import {AuthService} from '../auth.service';
 import {Router} from '@angular/router';
 import {CustomValidator} from '../../shared/validator/custom-validator.service';
 import {ToasterService} from 'angular2-toaster';
+import {StorageService} from '../../shared/storage/storage.service';
 
 @Component({
     selector: 'login',
@@ -27,7 +28,8 @@ export class LoginComponent implements OnInit {
     constructor(
                 private _loginService: AuthService,
                 private _router: Router,
-                private _toasterService: ToasterService) {
+                private _toasterService: ToasterService,
+                private _storageService: StorageService) {
     }
 
     ngOnInit() {
@@ -35,6 +37,9 @@ export class LoginComponent implements OnInit {
             email: new FormControl('', [Validators.required, CustomValidator.mailFormat]),
             password: new FormControl('', [Validators.required,Validators.minLength(4)])
         });
+
+        if(this._storageService.get('gdToken'))
+            this._router.navigate(['/dashboard']);
     }
 
     login(model: LoginInterface, isValid: boolean){
@@ -43,7 +48,6 @@ export class LoginComponent implements OnInit {
         
         this._loginService.postLogin(model)
             .subscribe( (data: any) => {
-                console.log(data);
                 this._toasterService.pop('success', 'Login', data.success);
                 if(data.user)
                     this._loginService.setAuthUserData(data.user);
@@ -52,7 +56,6 @@ export class LoginComponent implements OnInit {
                 this._router.navigate(['/dashboard']);
             },
             error => {
-                console.log(error);
                 this._toasterService.pop('error', 'Login', error );
             })
     }

@@ -58,7 +58,6 @@ export class SignupComponent implements OnInit {
     onChange(event) {
         var files = event.srcElement.files;
         this._files = files;
-
     }
 
     popToast() {
