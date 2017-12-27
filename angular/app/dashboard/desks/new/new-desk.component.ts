@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {FormGroup,FormBuilder,Validators,FormControl} from '@angular/forms';
+import {FormGroup,FormBuilder,Validators,FormControl,FormArray} from '@angular/forms';
 import {Router} from '@angular/router';
 import {StorageService} from '../../../shared/storage/storage.service';
 import {ToasterService} from 'angular2-toaster';
 import {NewDeskInterface} from './new-desk.interface';
-import {FormArray} from '@angular/forms/src/model';
+//import {FormArray, FormGroup} from '@angular/forms/src/model';
 import {DeskService} from '../desks.service';
+import {FormGroupValidator} from '../../../shared/validator/formGroupValidator';
 
 @Component({
     selector: 'new-desk',
@@ -46,6 +47,10 @@ export class NewDeskComponent implements OnInit {
             number_of_occupants: new FormControl('', Validators.required),
             city: new FormControl('', Validators.required),
             opening_hours: this._fb.array([this.initOpeningHours()])
+        },{
+            validator: (formGroup: FormGroup) => {
+                return FormGroupValidator.validateGroup(formGroup);
+            }
         });
     }
 
@@ -60,10 +65,15 @@ export class NewDeskComponent implements OnInit {
     initOpeningHours(){
         return this._fb.group({
             day_id: new FormControl('', Validators.required),
-            opened: new FormControl('', Validators.required),
+            opened: new FormControl(1, Validators.required),
             times_id: new FormControl('', Validators.required),
             end_time_id: new FormControl('', Validators.required)
         });
+    }
+
+    addDeskDetails(value, isValid){
+        console.log(value)
+        console.log(isValid)
     }
 
     getCategories(){
@@ -82,20 +92,14 @@ export class NewDeskComponent implements OnInit {
 
     getDays(){
         this._deskService.getDays().subscribe(
-            response => {
-                this.days=response.days;
-                console.log(response.days);
-            },
+            response => this.days=response.days,
             error => console.log(error)
         )
     }
 
     getTimes(){
         this._deskService.getTimes().subscribe(
-            response => {
-                this.times=response.times;
-                console.log(response.times);
-            },
+            response => this.times=response.times,
             error => console.log(error)
         )
     }
@@ -113,5 +117,20 @@ export class NewDeskComponent implements OnInit {
         const control = <FormArray>this.newDeskForm.controls['details'].controls['opening_hours'];
         control.removeAt(i);
     }
+
+    // private validateGroup(formGroup: FormGroup){
+
+    //     for(let key in formGroup.controls){
+    //         if(formGroup.controls.hasOwnProperty(key)){
+    //             let control: FormControl = <FormControl>formGroup.controls[key];
+    //             if(control.value){
+    //                 return null;
+    //             }
+    //         }
+    //     }
+    //     return {
+    //         validateGroup: false
+    //     }
+    // }
 
 }
