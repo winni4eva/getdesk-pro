@@ -20,6 +20,20 @@ export class NewDeskComponent implements OnInit {
     occupants: Array<any> = [];
     days: Array<any> = [];
     times: Array<any> = [];
+    storedForm = {
+        details: '',
+        amenities: ''
+    };
+    tabClasses = {
+        details: {
+            'tab-pane': true,
+            'active': true
+        },
+        amenities: {
+            'tab-pane': true,
+            'active': false
+        }
+    }
 
     constructor(private _router: Router,
                 private _storage: StorageService,
@@ -72,8 +86,9 @@ export class NewDeskComponent implements OnInit {
     }
 
     addDeskDetails(value, isValid){
-        console.log(value)
-        console.log(isValid)
+        this.storedForm.details = value;
+        this.tabClasses['details'].active=false;
+        this.tabClasses['amenities'].active=true;
     }
 
     getCategories(){
@@ -118,19 +133,8 @@ export class NewDeskComponent implements OnInit {
         control.removeAt(i);
     }
 
-    // private validateGroup(formGroup: FormGroup){
-
-    //     for(let key in formGroup.controls){
-    //         if(formGroup.controls.hasOwnProperty(key)){
-    //             let control: FormControl = <FormControl>formGroup.controls[key];
-    //             if(control.value){
-    //                 return null;
-    //             }
-    //         }
-    //     }
-    //     return {
-    //         validateGroup: false
-    //     }
-    // }
+    getTabClass(panel){
+        return this.tabClasses[panel];
+    }
 
 }

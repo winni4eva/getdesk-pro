@@ -5,11 +5,11 @@
         <div class="">
             <div class="card">
                 <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active">
-                        <a href="#details" aria-controls="details" role="tab" data-toggle="tab" (click)="_selectedTab='Details'">Details</a>
+                    <li role="presentation" [ngClass]="getTabClass('details')">
+                        <a href="#details" aria-controls="details" role="tab" data-toggle="tab" (click)="_selectedTab='Details'">Desk Details</a>
                     </li>
-                    <li role="presentation">
-                        <a href="#location" aria-controls="location" role="tab" data-toggle="tab" (click)="_selectedTab='Location'">Location</a>
+                    <li role="presentation" [ngClass]="getTabClass('amenities')">
+                        <a href="#amenities" aria-controls="amenities" role="tab" data-toggle="tab" (click)="_selectedTab='Amenities'">Desk Amenities</a>
                     </li>
                     <li role="presentation">
                         <a href="#pricing" aria-controls="pricing" role="tab" data-toggle="tab" (click)="_selectedTab='Pricing'">Pricing</a>
@@ -22,13 +22,12 @@
                 <!-- Tab panes -->
                 <div class="tab-content">
 
-                    <div role="tabpanel" class="tab-pane active" id="details">
+                    <div role="tabpanel" [ngClass]="getTabClass('details')" id="details">
                         <div class="row">
                             <h3 align="center">Desk Details</h3>
                             <div class="col-md-12">
 
-                                <form [formGroup]="newDeskForm" (ngSubmit)="addDeskDetails(newDeskForm.get('details').value, newDeskForm.get('details').valid)">
-                                    <p>{{newDeskForm.get('details').errors | json}}</p>
+                                <form [formGroup]="newDeskForm" (ngSubmit)="addDeskDetails(newDeskForm.get('details').value, newDeskForm.get('details').hasError('validateGroup'))">
                                     
                                     <div formGroupName="details">
 
@@ -136,9 +135,11 @@
                         
                     </div>
 
-                    <div role="tabpanel" class="tab-pane" id="location">
+                    <div role="tabpanel" [ngClass]="getTabClass('amenities')" id="amenities">
                         <div class="row">
-                            <h4>My Name Is Winni</h4>
+                            <h3 align="center">Desk Amenities</h3>
+                            <div class="col-md-12">
+                            </div>
                         </div>
                     </div>
 
