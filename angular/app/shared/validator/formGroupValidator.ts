@@ -32,8 +32,4 @@ export class FormGroupValidator{
         }
     }
 
-    private validateControls(formGroup: FormGroup){
-        //
-    }
-
 }

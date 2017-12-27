@@ -47,7 +47,6 @@ export class NewDeskComponent implements OnInit {
             amenities: this.initAmenities(),
         });
         this.getCategories();
-        this.getSubCategories();
         this.getOccupants();
         this.getDays();
         this.getTimes();
@@ -98,8 +97,10 @@ export class NewDeskComponent implements OnInit {
         )
     }
 
-    getSubCategories(){
-        this._deskService.getSubCategories().subscribe(
+    getSubCategories(categoryId){
+        console.log("Fetch sub categories");
+        console.log(categoryId);
+        this._deskService.getSubCategories(categoryId).subscribe(
             response => this.subCategories=response.subCategories,
             error => console.log(error)
         )

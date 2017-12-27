@@ -12,7 +12,7 @@ class SubCategoryRepo implements SubCategoryRepoInterface{
         $this->model = $model;
     }
     
-    public function getSubCategories(){
-        return $this->model->get();
+    public function getSubCategories(int $categoryId){
+        return $this->model->where('category_id', $categoryId)->get();
     }
 }

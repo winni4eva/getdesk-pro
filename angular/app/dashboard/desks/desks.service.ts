@@ -18,8 +18,8 @@ export class DeskService{
             .catch(this.handleError);
     }
 
-    getSubCategories(){
-        return this._http.get( '/api/v1/sub_categories')
+    getSubCategories(categoryId){
+        return this._http.get( '/api/v1/sub_categories/'+categoryId)
             .map(this.extractData)
             .catch(this.handleError);
     }

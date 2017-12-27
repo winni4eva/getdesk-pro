@@ -42,7 +42,7 @@
                                             <br /> 
                                             -->
 
-                                            <label for="name">Category*</label>
+                                            <label for="name">City*</label>
                                             <select class="form-control" formControlName="city">
                                                 <option value="">-- Select City--</option>
                                                 <option [value]="'accra'">Accra</option>
@@ -52,7 +52,7 @@
                                             <br/>
                                             
                                             <label for="name">Category*</label>
-                                            <select class="form-control" formControlName="category_id">
+                                            <select class="form-control" formControlName="category_id" (change)="getSubCategories(newDeskForm.get('details').value.category_id)">
                                                 <option value="">-- Select Category--</option>
                                                 <option [value]="category?.id" *ngFor="let category of categories">{{category?.name}}</option>
                                             </select>

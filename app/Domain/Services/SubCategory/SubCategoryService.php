@@ -13,8 +13,8 @@ class SubCategoryService {
         $this->subCategoryRepo = $subCategoryRepo;
     }
 
-    public function getSubCategories()
+    public function getSubCategories(int $categoryId)
     {
-        return $this->subCategoryRepo->getSubCategories();
+        return $this->subCategoryRepo->getSubCategories($categoryId);
     }
 }

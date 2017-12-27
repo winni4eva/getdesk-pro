@@ -4,6 +4,6 @@ namespace App\Domain\Repositories\SubCategory;
 
 interface SubCategoryRepoInterface{
 
-    public function getSubCategories();
+    public function getSubCategories(int $categoryId);
     
 }
