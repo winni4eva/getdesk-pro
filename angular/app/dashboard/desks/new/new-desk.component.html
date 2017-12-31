@@ -136,7 +136,7 @@
                                 <form [formGroup]="newDeskForm" (ngSubmit)="addDeskDetails(newDeskForm.get('details').value, newDeskForm.get('details').hasError('validateGroup'))">
                                     <span class="input-group-btn" formGroupName="amenities"> 
                                         <div formArrayName="system_amenities">         
-                                            <div class="btn btn-default image-preview-input col-md-3" *ngFor="let amenity of systemAmenities.controls;let j=index" [formGroupName]="j">
+                                            <div class="btn btn-default image-preview-input col-md-3" *ngFor="let amenity of systemAmenities.controls;let j=index" [formGroupName]="j" (click)="updateSystemAmenity(amenity)">
                                                 <label>{{getValue(amenity.controls).amenity.value}}</label>
                                                 <input type="checkbox" formControlName="checked" [value]="getValue(amenity.controls).id.value" [checked]="getValue(amenity.controls).checked.value">
                                             </div>

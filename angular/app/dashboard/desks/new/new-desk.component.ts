@@ -140,20 +140,21 @@ export class NewDeskComponent implements OnInit {
 
         const amenityFormArray = this._fb.array(amenitiesFormGroups);
         this.newDeskForm.controls.amenities.setControl('system_amenities', amenityFormArray);
-        //console.log(this.newDeskForm.controls.amenities.controls.system_amenities);
-        //this.newDeskForm.controls.amenities.controls.system_amenities.push(amenitiesFormGroups)
     }
 
     get systemAmenities(): FormArray{
-        //console.log('A')
-        //console.log(this.newDeskForm.controls.amenities.controls.system_amenities)
-        //console.log('B')
-        //console.log(this.newDeskForm.controls.amenities.get('system_amenities'))
         return this.newDeskForm.controls.amenities.get('system_amenities') as FormArray;
     }
 
+    updateSystemAmenity(control){
+        control.setValue({
+            'checked': !control.get('checked').value,
+            'amenity': control.get('amenity').value,
+            'id': control.get('id').value,
+        });
+    }
+
     getValue(control){
-        console.log(control)
         return control;
     }
 
