@@ -18,6 +18,7 @@ export class NewDeskComponent implements OnInit {
     categories: Array<any> = [];
     subCategories: Array<any> = [];
     occupants: Array<any> = [];
+    amenities: Array<any> = [];
     days: Array<any> = [];
     times: Array<any> = [];
     storedForm = {
@@ -42,7 +43,7 @@ export class NewDeskComponent implements OnInit {
                 private _deskService: DeskService) {}
 
     ngOnInit() {
-        this.newDeskForm = new FormGroup({
+        this.newDeskForm = this._fb.group({
             details: this.initDetails(),
             amenities: this.initAmenities(),
         });
@@ -50,6 +51,7 @@ export class NewDeskComponent implements OnInit {
         this.getOccupants();
         this.getDays();
         this.getTimes();
+        this.getAmenities();
     }
 
     initDetails(){
@@ -69,9 +71,8 @@ export class NewDeskComponent implements OnInit {
 
     initAmenities(){
         return this._fb.group({
-            name: new FormControl('', Validators.required),
-            category_id: new FormControl('', Validators.required),
-            sub_category_id: new FormControl('', Validators.required)
+            system_amenities: this._fb.array([]),
+            user_amenities: this._fb.array([])
         });
     }
 
@@ -98,8 +99,6 @@ export class NewDeskComponent implements OnInit {
     }
 
     getSubCategories(categoryId){
-        console.log("Fetch sub categories");
-        console.log(categoryId);
         this._deskService.getSubCategories(categoryId).subscribe(
             response => this.subCategories=response.subCategories,
             error => console.log(error)
@@ -120,6 +119,44 @@ export class NewDeskComponent implements OnInit {
         )
     }
 
+    getAmenities(){
+        this._deskService.getAmenities().subscribe(
+            response => {
+                this.amenities=response.amenities;
+                this.setAmenities();
+            },
+            error => console.log(error)
+        )
+    }
+
+    setAmenities(){
+        const amenitiesFormGroups = this.amenities.map(amenity=>{
+            let obj={};
+            obj['checked']=true;
+            obj['amenity']=amenity.amenity;
+            obj['id']=amenity.id;
+            return this._fb.group(obj);
+        });
+
+        const amenityFormArray = this._fb.array(amenitiesFormGroups);
+        this.newDeskForm.controls.amenities.setControl('system_amenities', amenityFormArray);
+        //console.log(this.newDeskForm.controls.amenities.controls.system_amenities);
+        //this.newDeskForm.controls.amenities.controls.system_amenities.push(amenitiesFormGroups)
+    }
+
+    get systemAmenities(): FormArray{
+        //console.log('A')
+        //console.log(this.newDeskForm.controls.amenities.controls.system_amenities)
+        //console.log('B')
+        //console.log(this.newDeskForm.controls.amenities.get('system_amenities'))
+        return this.newDeskForm.controls.amenities.get('system_amenities') as FormArray;
+    }
+
+    getValue(control){
+        console.log(control)
+        return control;
+    }
+
     getOccupants(){
         this.occupants=this._deskService.getOccupants();
     }
@@ -136,6 +173,13 @@ export class NewDeskComponent implements OnInit {
 
     getTabClass(panel){
         return this.tabClasses[panel];
+    }
+
+    setActiveTab(tab){
+        this.tabClasses['details'].active=false;
+        this.tabClasses['amenities'].active=false;
+        
+        this.tabClasses[tab].active=!this.tabClasses[tab].active;
     }
 
 }

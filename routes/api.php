@@ -35,4 +35,5 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api\V1', 'middleware' => 'auth:a
     Route::resource('sub_categories','SubCategoriesController');
     Route::resource('days','DaysController');
     Route::resource('times','TimesController');
+    Route::resource('amenities','AmenitiesController');
 });

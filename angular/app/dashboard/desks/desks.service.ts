@@ -36,6 +36,12 @@ export class DeskService{
             .catch(this.handleError);
     }
 
+    getAmenities(){
+        return this._http.get( '/api/v1/amenities')
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
     getOccupants(){
         return [
             4,8,10,20,30,100

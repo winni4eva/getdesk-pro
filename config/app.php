@@ -156,6 +156,7 @@ return [
         App\Domain\Repositories\SubCategory\SubCategoryRepoServiceProvider::class,
         App\Domain\Repositories\Time\TimeRepoServiceProvider::class,
         App\Domain\Repositories\Day\DayRepoServiceProvider::class,
+        App\Domain\Repositories\Amenity\AmenityRepoServiceProvider::class,
     ],
     /*
     |--------------------------------------------------------------------------

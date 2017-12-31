@@ -32,13 +32,14 @@ import {HttpInterceptor} from './shared/http-interceptor/http-interceptor.servic
 import {HttpInterceptorEvent} from './shared/http-interceptor/http-interceptor.event';
 //import {SimpleNotificationsModule,NotificationsService,PushNotificationsModule} from 'angular2-notifications';
 import {ToasterModule, ToasterService, ToasterContainerComponent} from 'angular2-toaster';
+import {MapToKeysPipe} from './shared/pipes/map-to-keys.pipe';
 
 @NgModule({
   declarations: [
     AppComponent, LoginComponent, SignupComponent, HeaderComponent,
     FooterComponent, HomeComponent, DashboardComponent, DeskComponent,
     NewDeskComponent, ReviewsComponent, ViewComponent, TabsComponent,
-    TabsContentComponent, TabsHeaderComponent,
+    TabsContentComponent, TabsHeaderComponent, MapToKeysPipe,
   ],
   imports: [
     BrowserAnimationsModule,
