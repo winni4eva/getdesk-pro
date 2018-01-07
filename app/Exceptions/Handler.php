@@ -56,6 +56,10 @@ class Handler extends ExceptionHandler
         {
             return response()->json($this->errorMessage($exception->getMessage()), 403 );
         }
+        else if($exception instanceof SKAgarwal\GoogleApi\Exceptions\GooglePlacesApiException || get_class($exception) == 'SKAgarwal\GoogleApi\Exceptions\GooglePlacesApiException')
+        {
+            return response()->json(['cities'=>['predictions'=>[]]], 200);
+        }
         return parent::render($request, $exception);
     }
 

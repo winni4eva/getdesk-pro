@@ -89,8 +89,6 @@ class RegisterController extends Controller
 
         $profile_img_path = $this->storeProfileImage( $request );
 
-        logger(collect($request)->put('profile_img_path', $profile_img_path)->only('first_name', 'last_name', 'email', 'password', 'profile_img_path')->all());
-
         User::create(
             collect($request)->put('profile_img_path', $profile_img_path)
                 ->only('first_name', 'last_name', 'email', 'password', 'profile_img_path')

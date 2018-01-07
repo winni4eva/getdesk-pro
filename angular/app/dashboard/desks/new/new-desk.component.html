@@ -5,17 +5,17 @@
         <div class="">
             <div class="card">
                 <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" [ngClass]="getTabClass('details')">
+                    <li role="presentation" [ngClass]="getTabClass('details')" style="pointer-events:none !important">
                         <a href="#details" aria-controls="details" role="tab" data-toggle="tab" (click)="setActiveTab('details');_selectedTab='Details'">Desk Details</a>
                     </li>
-                    <li role="presentation" [ngClass]="getTabClass('amenities')">
+                    <li role="presentation" [ngClass]="getTabClass('amenities')" style="pointer-events:none !important">
                         <a href="#amenities" aria-controls="amenities" role="tab" data-toggle="tab" (click)="setActiveTab('amenities');_selectedTab='Amenities'">Desk Amenities</a>
                     </li>
-                    <li role="presentation">
-                        <a href="#pricing" aria-controls="pricing" role="tab" data-toggle="tab" (click)="setActiveTab('');_selectedTab='Pricing'">Pricing</a>
+                    <li role="presentation" [ngClass]="getTabClass('pricing')" style="pointer-events:none !important">
+                        <a href="#pricing" aria-controls="pricing" role="tab" data-toggle="tab" (click)="setActiveTab('pricing');_selectedTab='Pricing'">Desk Pricing</a>
                     </li>
-                    <li role="presentation">
-                        <a href="#images" aria-controls="images" role="tab" data-toggle="tab" (click)="setActiveTab('');_selectedTab='Images'">Images</a>
+                    <li role="presentation" [ngClass]="getTabClass('images')" style="pointer-events:none !important">
+                        <a href="#images" aria-controls="images" role="tab" data-toggle="tab" (click)="setActiveTab('images');_selectedTab='Images'">Desk Images</a>
                     </li>
                 </ul>
 
@@ -36,14 +36,12 @@
                                             <input type="text" class="form-control" formControlName="name" placeholder="Enter Venue Name">
                                             <br />
 
-                                            <label for="name">City*</label>
-                                            <select class="form-control" formControlName="city">
-                                                <option value="">-- Select City--</option>
-                                                <option [value]="'accra'">Accra</option>
-                                                <option [value]="'tema'">Tema</option>
-                                                <option [value]="'tamale'">Tamale</option>
-                                            </select>
-                                            <br/>
+                                            <label for="name" >Venue Location*</label>
+                                            <input list="browsers" class="form-control" formControlName="city" placeholder="Search Venue Location">
+                                            <datalist id="browsers">
+                                                <option value="{{city.description}}" *ngFor="let city of cities">
+                                            </datalist>
+                                            <br />
                                             
                                             <label for="name">Category*</label>
                                             <select class="form-control" formControlName="category_id" (change)="getSubCategories(newDeskForm.get('details').value.category_id)">
@@ -62,7 +60,7 @@
                                             <label>Number Of Occupants*</label>
                                             <select  class="form-control" formControlName="number_of_occupants">
                                                 <option value="">-- Select Occupants --</option>
-                                                <option value="occupant" *ngFor="let occupant of occupants">{{occupant}}</option>
+                                                <option value="{{occupant}}" *ngFor="let occupant of occupants">{{occupant}}</option>
                                             </select>
                                             <br/>
                             
@@ -131,31 +129,107 @@
 
                     <div role="tabpanel" [ngClass]="getTabClass('amenities')" id="amenities">
                         <div class="row">
-                            <h3 align="center">Desk Amenities</h3>
+                            <!-- <h3 align="center">Desk Amenities</h3> -->
                             <div class="col-md-12">
-                                <form [formGroup]="newDeskForm" (ngSubmit)="addDeskDetails(newDeskForm.get('details').value, newDeskForm.get('details').hasError('validateGroup'))">
+                                <form [formGroup]="newDeskForm" (ngSubmit)="addDeskAmenities(newDeskForm.get('amenities').value)">
                                     <span class="input-group-btn" formGroupName="amenities"> 
-                                        <div formArrayName="system_amenities">         
+                                        <div formArrayName="system_amenities" class="col-md-6">
+                                            <h3>System Amenities</h3>         
                                             <div class="btn btn-default image-preview-input col-md-3" *ngFor="let amenity of systemAmenities.controls;let j=index" [formGroupName]="j" (click)="updateSystemAmenity(amenity)">
                                                 <label>{{getValue(amenity.controls).amenity.value}}</label>
                                                 <input type="checkbox" formControlName="checked" [value]="getValue(amenity.controls).id.value" [checked]="getValue(amenity.controls).checked.value">
                                             </div>
                                         </div>
+
+                                        <div formArrayName="user_amenities" class="col-md-6">   
+                                            <h3>User Amenities</h3>      
+                                            <div class="btn btn-default image-preview-input col-md-3" *ngFor="let amenity of userAmenity.controls;let k=index" [formGroupName]="k" (click)="updateSystemAmenity(amenity)">
+                                                <label>{{getValue(amenity.controls).amenity.value}}</label>
+                                                <input type="checkbox" formControlName="checked" [value]="getValue(amenity.controls).id.value" [checked]="getValue(amenity.controls).checked.value">
+                                            </div>
+                                        </div>
                                     </span>
+
+                                    <button class="btn btn-primary" type="submit" name="btnSave">Post</button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <h3 align="center">Add User Amenity</h3>
+                            <div class="col-md-12">
+                                <form [formGroup]="addAmenityForm" (ngSubmit)="addUserAmenity(addAmenityForm.value, addAmenityForm.valid)">      
+                                    <label for="name" >Amenity*</label>
+                                    <input type="text" class="form-control" formControlName="amenity" placeholder="Enter Amenity Name">
+                                    <br />
+
+                                    <button class="btn btn-primary" type="submit" name="btnSave" [disabled]="!addAmenityForm.valid">Add Amenity</button>
                                 </form>
                             </div>
                         </div>
                     </div>
 
-                    <div role="tabpanel" class="tab-pane" id="pricing">
-                        <div class="row">
-                            <h4>My Name Is Junior</h4>
-                        </div>
+                    <div role="tabpanel" [ngClass]="getTabClass('pricing')" id="pricing">
+                            <div class="row">
+                                <h3 align="center">Desk Pricing</h3>
+                                <div class="col-md-12">
+                                    <form [formGroup]="newDeskForm" (ngSubmit)="addDeskPricing(newDeskForm.get('pricing').value, newDeskForm.get('pricing').hasError('validateGroup'))">
+                                        <div formGroupName="pricing">
+
+                                            <div class="row" formArrayName="periods">
+                                                <div *ngFor="let period of newDeskForm.controls.pricing.controls.periods.controls; let l=index" [formGroupName]="l" class="img-thumbnail col-md-9">
+
+                                                    <div class="pull-right">
+                                                        <span *ngIf="l > 0" 
+                                                            (click)="removePricingPeriod(l)"><i style="font-size:15px;cursor:pointer !important" class="glyphicon glyphicon-remove"></i>
+                                                        </span>
+                                                    </div>
+
+                                                    <!-- <p><label class="pull-left" for="pricing_period_id">Period*</label></p> -->
+                                                    <select  class="form-control pull-left" style="width:25% !important" formControlName="pricing_period_id" required="">
+                                                        <option value="">-- Select Pricing Period --</option>
+                                                        <option [value]="period?.id" *ngFor="let period of pricingPeriods">{{period?.name}}</option>
+                                                    </select>
+
+                                                    <!-- <p><label for="price" class="pull-left">Price*</label></p> -->
+                                                    <input type="text" class="form-control pull-left" style="width:25% !important" formControlName="price" placeholder="Enter Price">
+                                                    <br />
+                                                </div>
+                                                <a class="btn btn-default pull-right" (click)="addPricingPeriod()">Add Period</a>
+                                            </div>
+
+                                            <button class="btn btn-primary pull-left" type="submit" name="btnSave" [disabled]="!newDeskForm.get('pricing').hasError('validateGroup')">Post</button>
+
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                     </div>
 
-                    <div role="tabpanel" class="tab-pane" id="images">
+                    <div role="tabpanel" [ngClass]="getTabClass('images')" id="images">
                         <div class="row">
-                            <h4>My Name Is Troy</h4>
+                            <form>
+                                <div class="btn btn-default image-preview-input">
+                                    <input type="file" accept="image/png, image/jpeg, image/gif" multiple (change)="setImages($event)" placeholder="Upload Desk Images..." />
+                                </div><br>
+
+                                <div class="row">
+                                    <div *ngFor="let preview of previewUrl;let i=index" class="img-thumbnail col-md-3 pull-left">
+                                        <div class="pull-right">
+                                            <span 
+                                                (click)="removeImage(i)"><i style="font-size:15px;cursor:pointer !important" class="glyphicon glyphicon-remove"></i>
+                                            </span>
+                                        </div>
+                                        <img [src]="preview.path" width="300" height="300">
+                                    </div>
+                                    <br>
+                                </div>
+
+                                <div class="row">
+                                    <button class="btn btn-primary pull-left" type="button" [disabled]="previewUrl.length==0" (click)="saveDesk()">Add Desk</button>
+                                </div>
+                                
+                            </form>
                         </div>
                     </div>
 

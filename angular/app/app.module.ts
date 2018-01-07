@@ -33,6 +33,7 @@ import {HttpInterceptorEvent} from './shared/http-interceptor/http-interceptor.e
 //import {SimpleNotificationsModule,NotificationsService,PushNotificationsModule} from 'angular2-notifications';
 import {ToasterModule, ToasterService, ToasterContainerComponent} from 'angular2-toaster';
 import {MapToKeysPipe} from './shared/pipes/map-to-keys.pipe';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,9 @@ import {MapToKeysPipe} from './shared/pipes/map-to-keys.pipe';
     routing,
     BrowserAnimationsModule,
     ToasterModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCaOj_VuJNPigzXhuDRFNP9UB1ZjJu5rws'
+    }),
   ],
   exports: [
     MatButtonModule,

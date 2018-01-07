@@ -30,13 +30,6 @@ class CreateListingsTable extends Migration
             $table->string('name');    
             $table->integer('number_of_occupants')->unsigned()->default(0);
             $table->string('city')->default('');
-            $table->decimal('price')->default(0.00);
-            $table->integer('pricing_period_id')->unsigned();
-            $table->foreign('pricing_period_id','listings_pricing_period_id_fk')
-	            ->references('id')
-	            ->on('pricing_periods')
-	            ->onDelete('cascade')
-                ->onUpdate('cascade');
             $table->boolean('availability')->default(1);
             $table->timestamps();
         });

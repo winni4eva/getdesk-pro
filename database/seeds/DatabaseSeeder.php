@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SubCategoryTableSeeder::class);
         $this->call(DayTableSeeder::class);
         $this->call(TimeTableSeeder::class);
+        $this->call(PricingPeriodTableSeeder::class);
     }
 }

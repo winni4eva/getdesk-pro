@@ -45,7 +45,6 @@ export class SignupComponent implements OnInit {
         
         this._authService.postSignup(model, this._files)
             .subscribe( (data: any) => {
-                console.log(data);
                 this._toasterService.pop('success', 'Signup', data.success);
                 //this._router.navigate(['/stores/'+ data.user[0].stores[0].id +'/home']);
             },

@@ -157,6 +157,13 @@ return [
         App\Domain\Repositories\Time\TimeRepoServiceProvider::class,
         App\Domain\Repositories\Day\DayRepoServiceProvider::class,
         App\Domain\Repositories\Amenity\AmenityRepoServiceProvider::class,
+        App\Domain\Repositories\UserAmenity\UserAmenityRepoServiceProvider::class,
+        App\Domain\Repositories\PricingPeriod\PricingPeriodRepoServiceProvider::class,
+        App\Domain\Repositories\Listing\ListingRepoServiceProvider::class,
+        App\Domain\Repositories\ListingOpeningHour\ListingOpeningHourRepoServiceProvider::class,
+        App\Domain\Repositories\ListingAmenity\ListingAmenityRepoServiceProvider::class,
+        App\Domain\Repositories\ListingPrice\ListingPriceRepoServiceProvider::class,
+        App\Domain\Repositories\ListingImage\ListingImageRepoServiceProvider::class,
     ],
     /*
     |--------------------------------------------------------------------------
