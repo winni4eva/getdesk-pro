@@ -164,6 +164,7 @@ return [
         App\Domain\Repositories\ListingAmenity\ListingAmenityRepoServiceProvider::class,
         App\Domain\Repositories\ListingPrice\ListingPriceRepoServiceProvider::class,
         App\Domain\Repositories\ListingImage\ListingImageRepoServiceProvider::class,
+        App\Domain\Repositories\ListingUserAmenity\ListingUserAmenityRepoServiceProvider::class,
     ],
     /*
     |--------------------------------------------------------------------------

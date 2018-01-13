@@ -16,7 +16,7 @@ class ListingAmenityRepo implements ListingAmenityRepoInterface{
     {
         collect($request)->map(function($amenity)use($listingId){
             $this->model->updateOrCreate(
-                ['listing_id'=>$listingId],
+                ['listing_id'=>$listingId,'amenity_id'=>$amenity['amenity_id']],
                 $amenity    
             );
         });

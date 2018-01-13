@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class ListingAmenity extends Model
 {
-    protected $fillable = ['listing_id','amenity_id','user_amenities_id'];
+    protected $fillable = ['listing_id','amenity_id'];
 }

@@ -6,6 +6,7 @@ use App\Domain\Services\ListingOpeningHour\ListingOpeningHourService;
 use App\Domain\Services\ListingAmenity\ListingAmenityService;
 use App\Domain\Services\ListingPrice\ListingPriceService;
 use App\Domain\Services\ListingImage\ListingImageService;
+use App\Domain\Services\ListingUserAmenity\ListingUserAmenityService;
 use Illuminate\Http\Request;
 use DB;
 
@@ -16,22 +17,28 @@ class ListingRepo implements ListingRepoInterface{
     protected $listingOpeningHourService;
 
     protected $listingAmenityService;
+    
+    protected $listingUserAmenityService;
 
     protected $listingPricingService;
 
     protected $listingImageService;
 
-    protected $amenityDefinition = ['system_amenities'=>'amenity_id','user_amenities'=>'user_amenities_id'];
+    protected $amenityDefinition = [
+        'system_amenities'=>'amenity_id',
+        'user_amenities'=>'user_amenities_id'
+    ];
 
     public function __construct(Listing $model, ListingOpeningHourService $listingOpeningHourService,
         ListingAmenityService $listingAmenityService, ListingPriceService $listingPricingService,
-        ListingImageService $listingImageService)
+        ListingImageService $listingImageService, ListingUserAmenityService $listingUserAmenityService)
     {
         $this->model = $model;
         $this->listingOpeningHourService = $listingOpeningHourService;
         $this->listingAmenityService = $listingAmenityService;
         $this->listingPricingService = $listingPricingService;
         $this->listingImageService = $listingImageService;
+        $this->listingUserAmenityService = $listingUserAmenityService;
     }
     
     public function getListings(){
@@ -51,28 +58,15 @@ class ListingRepo implements ListingRepoInterface{
                 $this->decodeString($request->get("details"))['opening_hours']
             );
 
-            collect($this->amenityDefinition)->map(function($defintion, $key)use($request, $listing){
-                $amenities = $this->filterAmenities( $this->decodeString( $request->get("amenities") )[$key], $listing->id, $key );
-                $this->listingAmenityService->storeListingAmenities($listing->id, $amenities);
+            collect($this->amenityDefinition)->map(function($defintion, $amenityType)use($request, $listing){
+                $amenities = $this->filterAmenities( $this->decodeString( $request->get("amenities") )[$amenityType], $listing->id, $amenityType );
+                $this->storeAmenities($amenityType, $amenities, $listing->id);
             });
 
             $this->listingPricingService->storeListingPrices($listing->id, $this->decodeString( $request->get("pricing") )['periods'] );
 
-            collect($request->all())->keys()->filter(function($key){
-                return substr($key,0,5)=='image';
-            })->map(function($inputName)use($request,$listing){     
-                $path = public_path().$this->getImagePath($listing->id);
-                if( !file_exists($path) ) mkdir($path, 0777, true);
-                
-                $image = $request->file($inputName);
-                $img_path = $image->move($path, $image->getClientOriginalName());
-                $imageUrl = $this->getImagePath($listing->id).DIRECTORY_SEPARATOR.$image->getClientOriginalName();
-                
-                $this->listingImageService->storeListingImage($listing->id, $imageUrl);
-
-            });
+            $this->storeListingImages($request, $listing->id);
         });
-
         return true;
     }
 
@@ -88,19 +82,38 @@ class ListingRepo implements ListingRepoInterface{
         })->map(function($amenity)use($amenityType,$listingId){
             return [
                 'listing_id' => $listingId,
-                $this->amenityDefinition[$amenityType] => $amenity['id'],
-                $this->amenityDefinition[
-                    $otherAmenity = collect($this->amenityDefinition)->keys()->filter(function($key)use($amenityType){
-                        return $amenityType != $key;
-                    })->first()
-                ] => 0
+                $this->amenityDefinition[$amenityType] => $amenity['id']
             ];
         })->all();
+    }
+
+    protected function storeListingImages(Request $request, $listingId)
+    {
+        collect($request->all())->keys()->filter(function($key){
+            return substr($key,0,5)=='image';
+        })->map(function($inputName)use($request, $listingId){     
+            $path = public_path().$this->getImagePath($listingId);
+            if( !file_exists($path) ) mkdir($path, 0777, true);
+            
+            $image = $request->file($inputName);
+            $img_path = $image->move($path, $image->getClientOriginalName());
+            $imageUrl = $this->getImagePath($listingId).DIRECTORY_SEPARATOR.$image->getClientOriginalName();
+            
+            $this->listingImageService->storeListingImage($listingId, $imageUrl);
+        });
     }
 
     protected function getImagePath(int $listingId)
     {
         $dirSeparator = DIRECTORY_SEPARATOR;
         return "{$dirSeparator}assets{$dirSeparator}images{$dirSeparator}desks{$dirSeparator}{$listingId}";
+    }
+
+    protected function storeAmenities(string $amenityType, array $amenities, int $listingId)
+    {
+        if ($amenityType == 'system_amenities')
+            $this->listingAmenityService->storeListingAmenities($listingId, $amenities);
+        elseif($amenityType == 'user_amenities')
+            $this->listingUserAmenityService->storeListingUserAmenities($listingId, $amenities);
     }
 }

@@ -46,3 +46,6 @@ Thumbs.db
 
 /public/img/profile/
 /public/img/profile/*
+
+public/assets/images/desks/
+public/assets/images/desks/*
