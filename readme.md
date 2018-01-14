@@ -2,6 +2,7 @@
 ## Installation
 
 ```
+git clone https://github.com/winni4eva/getdesk-pro.git
 cd getdesk-pro
 npm install
 composer install

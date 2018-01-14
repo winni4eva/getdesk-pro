@@ -64,8 +64,6 @@ class LoginController extends Controller
      */
     public function logout()
     {
-        logger("User logged out");
-        //return $this->guard()->logout();
         JWTAuth::invalidate(JWTAuth::getToken());
 
         return response()->json(['success'=>'User logged successfully...'], 200); 

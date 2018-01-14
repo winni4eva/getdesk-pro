@@ -2,7 +2,7 @@
     <div class="panel-body" (click)="clickedTab('new')">
         <h3><span class="fa fa-users"></span> New Desk</h3>
         <!-- <p align="right">2017-07-01</p> -->
-        <h1>3 Desks</h1>
+        <h1>{{totalListings || 0}} Desk{{(totalListings>1)?'s':''}}</h1>
         <!-- <p align="right"><a href="">View All</a></p> -->
     </div>
 </div>
@@ -11,7 +11,7 @@
     <div class="panel-body" (click)="clickedTab('view')">
         <h3><span class="fa fa-code-fork"></span> View Desk</h3>
         <!-- <p align="right">2017-07-01</p> -->
-        <h1>3 Desks</h1>
+        <h1>{{totalListings || 0}} Desk{{(totalListings>1)?'s':''}}</h1>
         <!-- <p align="right"><a href="">View All</a></p> -->
     </div>
 </div>

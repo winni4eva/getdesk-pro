@@ -53,6 +53,8 @@ class ListingRepo implements ListingRepoInterface{
                 $this->decodeString($request->get("details"))
             );
 
+            $listing->user()->sync([\Auth::user()->id]);
+
             $this->listingOpeningHourService->storeListingOpeningHours(
                 $listing->id, 
                 $this->decodeString($request->get("details"))['opening_hours']

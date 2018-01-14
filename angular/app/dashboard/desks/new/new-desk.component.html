@@ -37,9 +37,9 @@
                                             <br />
 
                                             <label for="name" >Venue Location*</label>
-                                            <input list="browsers" class="form-control" formControlName="city" placeholder="Search Venue Location">
-                                            <datalist id="browsers">
-                                                <option value="{{city.description}}" *ngFor="let city of cities">
+                                            <input list="cities" class="form-control" formControlName="city" placeholder="Search Venue Location">
+                                            <datalist id="cities">
+                                                <option [value]="city" *ngFor="let city of cities">{{city?.description}}</option>
                                             </datalist>
                                             <br />
                                             

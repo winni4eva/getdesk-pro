@@ -15,7 +15,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {DeskComponent} from './dashboard/desks/desks.component';
 import {NewDeskComponent} from './dashboard/desks/new/new-desk.component';
 import {ReviewsComponent} from './dashboard/desks/reviews/reviews.component';
-import {ViewComponent} from './dashboard/desks/view/view.component';
+import {ViewDesksComponent} from './dashboard/desks/view/view-desks.component';
 import {TabsComponent} from './shared/tabs/tabs.component';
 import {TabsContentComponent} from './shared/tabs/tabs-content/tabs-content.component';
 import {TabsHeaderComponent} from './shared/tabs/tabs-header/tabs-header.component';
@@ -39,7 +39,7 @@ import { AgmCoreModule } from '@agm/core';
   declarations: [
     AppComponent, LoginComponent, SignupComponent, HeaderComponent,
     FooterComponent, HomeComponent, DashboardComponent, DeskComponent,
-    NewDeskComponent, ReviewsComponent, ViewComponent, TabsComponent,
+    NewDeskComponent, ReviewsComponent, ViewDesksComponent, TabsComponent,
     TabsContentComponent, TabsHeaderComponent, MapToKeysPipe,
   ],
   imports: [

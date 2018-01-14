@@ -104,6 +104,12 @@ export class DeskService{
         .catch(this.handleError);
     }
 
+    getListings(page = 'home'){
+        return this._http.get( `/api/v1/listings?page=${page}`)
+            .map(this.extractData)
+            .catch(this.handleError); 
+    }
+
     private extractData(res: Response) {
         return res.json() || { };
     }

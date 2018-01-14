@@ -39,6 +39,13 @@ class User extends Authenticatable implements JWTSubject
         'password', 'remember_token',
     ];
 
+    public function listings()
+    {
+        return $this->belongsToMany(Listing::class, 'user_listings');
+                    //->withTimestamps();
+                    //->withPivot('admin');
+    }
+
     /**
      * Set the user's password.
      *

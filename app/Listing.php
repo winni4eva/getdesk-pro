@@ -24,4 +24,23 @@ class Listing extends Model
     {
         return $this->hasMany(ListingUserAmenity::class);
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function subCategory()
+    {
+        return $this->belongsTo(SubCategory::class);
+    }
+
+    public function user(){
+        return $this->belongsToMany(User::class, 'user_listings')->withTimestamps();
+    }
+
+    public function images()
+    {
+        return $this->hasMany(ListingImage::class);
+    }
 }
