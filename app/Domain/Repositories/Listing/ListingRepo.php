@@ -42,7 +42,7 @@ class ListingRepo implements ListingRepoInterface{
     }
     
     public function getListings(){
-        return $this->model->get();
+        return $this->model->with(['images'])->get();
     }
 
     public function storeListing(Request $request)
@@ -61,11 +61,17 @@ class ListingRepo implements ListingRepoInterface{
             );
 
             collect($this->amenityDefinition)->map(function($defintion, $amenityType)use($request, $listing){
-                $amenities = $this->filterAmenities( $this->decodeString( $request->get("amenities") )[$amenityType], $listing->id, $amenityType );
+                $amenities = $this->filterAmenities( 
+                    $this->decodeString( $request->get("amenities") )[$amenityType], 
+                    $listing->id, $amenityType 
+                );
                 $this->storeAmenities($amenityType, $amenities, $listing->id);
             });
 
-            $this->listingPricingService->storeListingPrices($listing->id, $this->decodeString( $request->get("pricing") )['periods'] );
+            $this->listingPricingService->storeListingPrices(
+                $listing->id, 
+                $this->decodeString( $request->get("pricing") )['periods'] 
+            );
 
             $this->storeListingImages($request, $listing->id);
         });

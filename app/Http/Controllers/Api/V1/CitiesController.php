@@ -23,7 +23,6 @@ class CitiesController extends BaseController
     public function index(Request $request)
     {
         $cities = GooglePlaces::placeAutocomplete($request->get('location'));
-        //logger($cities);
 
         return response()->json(compact('cities'), 200);
     }

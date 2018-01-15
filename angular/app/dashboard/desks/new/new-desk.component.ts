@@ -156,7 +156,10 @@ export class NewDeskComponent implements OnInit {
 
     saveDesk(){
         this._deskService.storeDeskListing(this.storedForm, this.images).subscribe(
-            response => this._toasterService.pop('success', 'Desk', response.success),
+            response => {
+                this._toasterService.pop('success', 'Desk', response.success);
+                this._router.navigate(["/dashboard/desks/view"]);
+            },
             error => this._toasterService.pop('error', 'Desk', error)
         );
     }

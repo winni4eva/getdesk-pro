@@ -1,0 +1,8 @@
+<div class="carousel">
+    <ul class="slides">
+        <li *ngFor="let image of images;let i=index">
+            <h2>Image {{i+1}}</h2>
+            <img [src]="image.img_path" onError="this.src='/assets/images/loading.gif'" alt="">
+        </li>  
+    </ul>
+</div>

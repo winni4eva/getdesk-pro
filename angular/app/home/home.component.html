@@ -2,6 +2,21 @@
 
 <!-- this creates a google map on the page with the given lat/lng from -->
 <!-- the component as the initial center of the map: -->
-<agm-map [latitude]="lat" [longitude]="lng">
+<!-- <agm-map [latitude]="lat" [longitude]="lng">
   <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-</agm-map>
+</agm-map> -->
+
+<div class="container-fluid" style="background:white;height:999px">
+    
+    <div class="col-md-12" style="margin-top:8%">
+        <h3 style="font-weight:bolder;text-align:center">GetDesk</h3>
+        <input type="text" style="width:80%;margin:0 auto" class="form-control" placeholder="Search Desks">
+    </div>
+
+    <div class="col-md-12" style="margin-top:2%">
+        <div class="pull-left col-md-4" *ngFor="let listing of listings">
+            <css-carousel [images]="listing.images"></css-carousel>
+        </div>
+    </div>
+
+</div>

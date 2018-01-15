@@ -30,6 +30,10 @@ Route::group(['namespace' => 'Auth'], function () {
     
 });
 
+Route::group(['namespace' => 'Api\V1'], function () {
+    Route::get('listings','ListingsController@index');
+});
+
 Route::group(['prefix' => 'v1', 'namespace' => 'Api\V1', 'middleware' => 'auth:api'], function () {
     Route::resource('categories','CategoriesController');
     Route::resource('sub_categories','SubCategoriesController');

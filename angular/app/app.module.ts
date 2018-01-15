@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, RequestOptions, XHRBackend, Http } from '@angular/http';
 
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
 import {LoginComponent} from './auth/login/login.component';
 import {SignupComponent} from './auth/signup/signup.component';
 import {HeaderComponent} from './header/header.component';
@@ -25,22 +25,22 @@ import {StorageService} from './shared/storage/storage.service';
 import {DashboardService} from './dashboard/dashboard.service';
 import {LoginGuard} from './auth/guard/guard.service';
 import {DeskService} from './dashboard/desks/desks.service';
-//import {NotificationService} from './shared/notification/notification.service';
+import {HomeService} from './home/home.service';
 import {routing} from './app.routes';
 
 import {HttpInterceptor} from './shared/http-interceptor/http-interceptor.service';
 import {HttpInterceptorEvent} from './shared/http-interceptor/http-interceptor.event';
-//import {SimpleNotificationsModule,NotificationsService,PushNotificationsModule} from 'angular2-notifications';
 import {ToasterModule, ToasterService, ToasterContainerComponent} from 'angular2-toaster';
 import {MapToKeysPipe} from './shared/pipes/map-to-keys.pipe';
-import { AgmCoreModule } from '@agm/core';
+import {AgmCoreModule} from '@agm/core';
+import {CSSCarouselComponent} from './shared/carousel/carousel.component';
 
 @NgModule({
   declarations: [
     AppComponent, LoginComponent, SignupComponent, HeaderComponent,
     FooterComponent, HomeComponent, DashboardComponent, DeskComponent,
     NewDeskComponent, ReviewsComponent, ViewDesksComponent, TabsComponent,
-    TabsContentComponent, TabsHeaderComponent, MapToKeysPipe,
+    TabsContentComponent, TabsHeaderComponent, MapToKeysPipe, CSSCarouselComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -64,7 +64,7 @@ import { AgmCoreModule } from '@agm/core';
   providers: [
     HttpInterceptorEvent,
     AuthService, StorageService, ToasterService, DashboardService,
-    LoginGuard, DeskService,
+    LoginGuard, DeskService, HomeService,
 
     // ProgressTabsNavigateEvent,
     // { provide: RequestOptions, useClass: MyRequestOptions },
