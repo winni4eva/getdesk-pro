@@ -7,7 +7,7 @@ import {AuthService} from '../auth/auth.service';
 import {ToasterService} from 'angular2-toaster';
 
 @Component({
-    selector: 'dash-header',
+    selector: 'app-header',
     templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {

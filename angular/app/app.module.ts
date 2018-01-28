@@ -34,13 +34,21 @@ import {ToasterModule, ToasterService, ToasterContainerComponent} from 'angular2
 import {MapToKeysPipe} from './shared/pipes/map-to-keys.pipe';
 import {AgmCoreModule} from '@agm/core';
 import {CSSCarouselComponent} from './shared/carousel/carousel.component';
+import { NavComponent } from './nav/nav.component';
+import { SliderComponent } from './slider/slider.component';
+import { PropertiesComponent } from './properties/properties.component';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { TestimonialsComponent } from './testimonials/testimonials.component';
+import { CountsComponent } from './counts/counts.component';
+import { SaleComponent } from './sale/sale.component';
+import { PreloaderComponent } from './preloader/preloader.component';
 
 @NgModule({
   declarations: [
     AppComponent, LoginComponent, SignupComponent, HeaderComponent,
     FooterComponent, HomeComponent, DashboardComponent, DeskComponent,
     NewDeskComponent, ReviewsComponent, ViewDesksComponent, TabsComponent,
-    TabsContentComponent, TabsHeaderComponent, MapToKeysPipe, CSSCarouselComponent,
+    TabsContentComponent, TabsHeaderComponent, MapToKeysPipe, CSSCarouselComponent, NavComponent, SliderComponent, PropertiesComponent, WelcomeComponent, TestimonialsComponent, CountsComponent, SaleComponent, PreloaderComponent,
   ],
   imports: [
     BrowserAnimationsModule,

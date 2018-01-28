@@ -99,9 +99,9 @@ export class HttpInterceptor extends Http{
             //this.customHtttp.requestStatusEvent("");
 
             if (err.status  == 401) {
-                //this._localStorage.remove('gdToken');
+                this._localStorage.remove('gdToken');
                 //this._localStorage.remove('isAuthenticated');
-                //window.location.assign('/login');
+                window.location.assign('#/login');
                 return Observable.empty();
             } else {
                 return Observable.throw(err);

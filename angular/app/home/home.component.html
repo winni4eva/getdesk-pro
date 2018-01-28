@@ -3,7 +3,7 @@
 <!-- this creates a google map on the page with the given lat/lng from -->
 <!-- the component as the initial center of the map: -->
 
-<div class="container-fluid" style="background:white;height:999px">
+<!-- <div class="container-fluid" style="background:white;height:999px">
     
     <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="onLocationSelect($event)" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="true">
       <agm-marker 
@@ -51,4 +51,46 @@
       </div>
     </form>
 
-</div>
+</div> -->
+
+<!-- Start Preloader -->
+<app-preloader></app-preloader>
+<!-- End Preloader -->
+
+<!-- Body content -->
+
+<!--Start header -->
+<app-header></app-header>       
+<!--End header -->
+
+<!-- Start of nav bar -->
+<app-nav></app-nav>
+<!-- End of nav bar -->
+
+<!-- Start slider  area-->
+<app-slider></app-slider>
+<!-- End slider area -->
+
+<!-- property area start-->
+<app-properties></app-properties>
+<!-- Property area end -->
+
+<!--Start Welcome area -->
+<app-welcome></app-welcome>
+<!--End Welcome area -->
+
+<!--Start Testimonials -->
+<app-testimonials></app-testimonials>
+<!--End Testimonials -->
+
+<!-- Start Count area -->
+<app-counts></app-counts>
+<!-- Start Count area -->
+
+<!-- Start sale area -->
+<app-sale></app-sale>
+<!-- End sale area -->
+
+<!--Start Footer area-->
+<app-footer></app-footer>
+<!--End Footer area-->

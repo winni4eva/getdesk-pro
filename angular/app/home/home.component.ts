@@ -5,7 +5,7 @@ import {DeskService} from '../dashboard/desks/desks.service';
 import {HomeService} from './home.service';
 
 @Component({
-    selector: 'home',
+    selector: 'app-home',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
 })
