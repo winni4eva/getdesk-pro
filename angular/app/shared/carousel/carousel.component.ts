@@ -1,5 +1,6 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {Image} from './image.interface';
+import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'css-carousel',
@@ -7,8 +8,29 @@ import {Image} from './image.interface';
   styleUrls: ['./carousel.component.css'],
 })
 
-export class CSSCarouselComponent {
-	@Input('images') images;
+export class CSSCarouselComponent implements OnChanges, OnInit {
+  @Input('images') images;
+  @Input('name') name;
+  
+  ngOnInit(){
+    //this.formatImageUrls();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    let formattedImages = [];
+    changes.images.currentValue.map(image => {
+        let splitString = image.img_path.split(`${image.listing_id}/`);
+        let imgUrl = splitString[0]+image.listing_id+'/2x/'+splitString[1];
+        formattedImages.push({img_path: imgUrl})
+    });
+    this.images=formattedImages;
+  }
+
+  formatImageUrls(){
+    this.images.map(image=>{
+      //console.log(image)
+    });
+  }
 }
 
 // var IMAGES: Image[] = [

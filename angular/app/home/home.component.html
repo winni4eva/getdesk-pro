@@ -2,21 +2,53 @@
 
 <!-- this creates a google map on the page with the given lat/lng from -->
 <!-- the component as the initial center of the map: -->
-<!-- <agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-</agm-map> -->
 
 <div class="container-fluid" style="background:white;height:999px">
     
-    <div class="col-md-12" style="margin-top:8%">
-        <h3 style="font-weight:bolder;text-align:center">GetDesk</h3>
-        <input type="text" style="width:80%;margin:0 auto" class="form-control" placeholder="Search Desks">
-    </div>
+    <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="onLocationSelect($event)" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="true">
+      <agm-marker 
+        [latitude]="code.latitude" 
+        [longitude]="code?.longitude" 
+        (markerClick)="clickedMarker('Gdesk', i)" 
+        [label]="'DESK'"
+        *ngFor="let code of geoCodes">
+      </agm-marker>
+    </agm-map>
 
-    <div class="col-md-12" style="margin-top:2%">
-        <div class="pull-left col-md-4" *ngFor="let listing of listings">
-            <css-carousel [images]="listing.images"></css-carousel>
-        </div>
-    </div>
+    <form [formGroup]="form">
+      <div class="col-md-12" style="margin-top:1%">
+          <h3 style="font-weight:bolder;text-align:center">GetDesk</h3>
+          <div style="margin:0 auto;width:30%">
+            <div style="width:20%;float:left">
+                <label>Location</label>
+                <input type="checkbox" class="form-control" style="margin:0 auto !important" formControlName="location"/>
+            </div>
+            <div style="width:20%;float:left">
+                <label>Category</label>
+                <input type="checkbox" class="form-control" style="margin:0 auto !important" formControlName="category"/>
+            </div>
+            <div style="width:20%;float:left">
+                <label>Sub Category</label>
+                <input type="checkbox" class="form-control" style="margin:0 auto !important" formControlName="sub_category"/>
+            </div>
+            <div style="width:20%;float:left">
+                <label>Max Price</label>
+                <input type="checkbox" class="form-control" style="margin:0 auto !important" formControlName="max_price"/>
+            </div>
+            <div style="width:20%;float:left">
+                <label>Min Price</label>
+                <input type="checkbox" class="form-control" style="margin:0 auto !important" formControlName="min_price"/>
+            </div>
+          </div>
+
+          <input type="text" formControlName="search" style="width:80%;margin:0 auto" class="form-control" placeholder="Search Desks">
+      </div>
+
+      <div class="col-md-12" style="margin-top:2%">
+          <div class="pull-left col-md-4" *ngFor="let listing of listings" style="background-image: url('/assets/images/gdeskicon.png')">
+              <css-carousel [images]="listing?.images" [name]="listing?.name"></css-carousel>
+          </div>
+      </div>
+    </form>
 
 </div>

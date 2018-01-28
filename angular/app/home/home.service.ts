@@ -18,6 +18,12 @@ export class HomeService{
                     .catch(this.handleError);
     }
 
+    searchListings(searchQuery){
+        return this._http.post( this._apiUrl+`listings/search`, searchQuery)
+                    .map(this.extractData)
+                    .catch(this.handleError);
+    }
+
     private extractData(res: Response) {
         return res.json() || { };
     }

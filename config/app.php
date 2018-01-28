@@ -152,6 +152,9 @@ return [
         App\Providers\RouteServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
 
+        Intervention\Image\ImageServiceProvider::class,
+        Jcf\Geocode\GeocodeServiceProvider::class,
+
         App\Domain\Repositories\Category\CategoryRepoServiceProvider::class,
         App\Domain\Repositories\SubCategory\SubCategoryRepoServiceProvider::class,
         App\Domain\Repositories\Time\TimeRepoServiceProvider::class,
@@ -213,5 +216,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+        'Image' => Intervention\Image\Facades\Image::class,
+        'Geocode' => Jcf\Geocode\Facades\Geocode::class,
     ],
 ];

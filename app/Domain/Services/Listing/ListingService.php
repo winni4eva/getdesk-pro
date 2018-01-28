@@ -14,9 +14,9 @@ class ListingService {
         $this->listingRepo = $listingRepo;
     }
 
-    public function getListings()
+    public function getListings(array $request)
     {
-        return $this->listingRepo->getListings();
+        return $this->listingRepo->getListings($request);
     }
 
     public function storeListing(Request $request)

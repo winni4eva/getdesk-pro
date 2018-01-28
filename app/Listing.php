@@ -43,4 +43,15 @@ class Listing extends Model
     {
         return $this->hasMany(ListingImage::class);
     }
+
+    public function prices()
+    {
+        return $this->hasMany(ListingPrice::class);
+    }
+
+    // public function scopeCategory (Builder $query, $categoryName) {
+    //     return $query->whereHas('category', function ($q) use ($categoryName) {
+    //             $q->where('name', 'LIKE','%'.$categoryName.'%');
+    //     });
+    // }
 }

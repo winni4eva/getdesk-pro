@@ -16,7 +16,7 @@ class ListingOpeningHourRepo implements ListingOpeningHourRepoInterface{
     {
         collect($request)->map(function($openingHour)use($listingId){
             $this->model->updateOrCreate(
-                ['listing_id'=>$listingId],
+                ['listing_id'=>$listingId,'day_id'=>$openingHour['day_id']],
                 $openingHour    
             );
         });

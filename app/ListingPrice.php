@@ -7,4 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class ListingPrice extends Model
 {
     protected $fillable = ['listing_id','pricing_period_id','price'];
+
+    public function listing()
+    {
+        return $this->belongsTo(Listing::class);
+    }
 }
