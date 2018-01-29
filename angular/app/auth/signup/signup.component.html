@@ -1,99 +1,76 @@
-<!--
-<div style="margin-left:25%;margin-top:5%">
-    <div>
-        <div class="col-sm-6">
-            <form autocomplete="off" [formGroup]="signupForm" (ngSubmit)="signup(signupForm.value, signupForm.valid)" novalidate>
-                <h1 class="heading">Sign Up For Your New Account</h1>
 
-                <div class="form-group">
-                    
-                </div>
+<app-header></app-header>
 
-                <div class="form-group">
-                    
-                </div>
+<app-nav></app-nav>
 
-                <div class="form-group">
-                    
-                </div>
-
-                <div class="form-group">
-
-                </div>
-
-                <div class="form-group">
-                    
-                </div>
-
-                <div class="form-group">
-                    
-                </div>
-
-                <div class="form-group">
-                    <div class="pull-left">Stay Signed In</div>
-                    <div class="pull-right"><a [routerLink]="['/reset_password']">Forgot Password?</a></div>
-                </div>
-
-                <div class="form-group">
-                    <button class="btn ctm-btn-secondary col-sm-12" [disabled]="!signupForm.valid">Sign Up</button>
-                </div>
-            </form>
+<!-- Start page header -->
+<div class="page-head"> 
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">New Account</h1>               
+            </div>
         </div>
-        <div class="row" style="display: block;">Have an account? <a [routerLink]="['/login']">Login</a></div>
-        
     </div>
 </div>
--->
+<!-- End page header -->
 
-<div class="" style="background-color:#F7F7F7 !important">
 
-    <a class="hiddenanchor" id="toregister"></a>
-    <a class="hiddenanchor" id="tologin"></a>
+<!--Start register-area -->
+<div class="register-area" style="background-color: rgb(249, 249, 249);">
+    <div class="container">
 
-    <div id="wrapper">
-        <div id="login" class="animate form">
-            <section class="login_content">
-                <form autocomplete="off" [formGroup]="signupForm" (ngSubmit)="signup(signupForm.value, signupForm.valid)" novalidate>
-                    <h1>GetDesk </h1><br />
-                    <div>
-                        <input required type="text" name="text" formControlName="first_name" class="form-control" placeholder="First Name">
-                        <small *ngIf="signupForm.controls.first_name.errors?.required" class="errorAlert">First name is required</small>
-                    </div>
-                    <div>
-                        <input required type="text" name="text" formControlName="last_name" class="form-control" placeholder="Last Name">
-                        <small *ngIf="signupForm.controls.last_name.errors?.required" class="errorAlert">Last name is required</small>
-                    </div>
-                    <div>
-                        <input required type="text" name="email" formControlName="email" class="form-control" placeholder="Email Address">
-                        <small *ngIf="signupForm.controls.email.errors?.email" class="errorAlert">Email format should be <i>example@example.com</i>.</small>
-                    </div>
-                    <div>
-                        <input required type="password" name="password" formControlName="password" class="form-control" placeholder="Password" >
-                        <small [hidden]="!signupForm.controls.password.hasError('minLength')" class="errorAlert">Password Should be 4 characters long!</small>
-                    </div>
-                    <div>
-                        <input required type="password" name="password_confirmation" formControlName="password_confirmation" class="form-control" placeholder="Password Confirmation" >
-                        <small [hidden]="!signupForm.controls.password_confirmation.hasError('minLength')" class="errorAlert">Password Should be 4 characters long!</small>
-                    </div>
-                    <div>
-                        <input type="file" formControlName="image" formControlName="image" class="form-control" (change)="onChange($event)">
-                        <small [hidden]="signupForm.controls.image.pristine || !signupForm.controls.image.hasError('required')" class="inputError">Image is required.</small>
-                    </div>
-                    
-                    <br>
-                    
-                    <div>
-                        <button type="submit" name="btnSignUp" class="btn btn-success" [disabled]="!signupForm.valid"><span class="fa fa-user"></span> Join Us</button>
-                    </div>  
-                    <a [routerLink]="['/login']" class="btn btn-primary"><span class="fa fa-arrow-right"></span> Log In</a>
-                      
-                    <div class="clearfix"></div>
-                    <div class="separator"></div>
-                </form>
-                <!-- form -->
-            </section>
-            <!-- content -->
+        <div class="col-md-12">
+            <div class="box-for overflow">
+                <div class="col-md-12 col-xs-12 register-blocks">
+                    <h2>New Account : </h2> 
+                    <form method="post" autocomplete="off" [formGroup]="signupForm" (ngSubmit)="signup(signupForm.value, signupForm.valid)" novalidate>
+                        <div class="form-group">
+                            <label for="first_name">First Name*</label>
+                            <input required type="text" name="first_name" formControlName="first_name" class="form-control" placeholder="First Name">
+                            <small [hidden]="signupForm.controls.first_name.pristine || !signupForm.controls.first_name.errors?.required" class="errorAlert">First name is required</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="last_name">Last Name*</label>
+                            <input required type="text" name="last_name" formControlName="last_name" class="form-control" placeholder="Last Name">
+                            <small [hidden]="signupForm.controls.last_name.pristine || !signupForm.controls.last_name.errors?.required" class="errorAlert">Last name is required</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email*</label>
+                            <input required type="text" name="email" formControlName="email" class="form-control" placeholder="Email Address">
+                            <small [hidden]="signupForm.controls.email.pristine || !signupForm.controls.email.errors?.email" class="errorAlert">Email format should be <i>example@example.com</i>.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password*</label>
+                            <input required type="password" name="password" formControlName="password" class="form-control" placeholder="Password" >
+                            <small [hidden]="signupForm.controls.password.pristine || !signupForm.controls.password.hasError('minLength')" class="errorAlert">Password Should be 4 characters long!</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password_confirmation">Password Confirmation*</label>
+                            <input required type="password" name="password_confirmation" formControlName="password_confirmation" class="form-control" placeholder="Password Confirmation" >
+                            <small [hidden]="signupForm.controls.password_confirmation.pristine || !signupForm.controls.password_confirmation.hasError('minLength')" class="errorAlert">Password Should be 4 characters long!</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="image">Profile Image*</label>
+                            <input type="file" formControlName="image" formControlName="image" class="form-control" (change)="onChange($event)">
+                            <small [hidden]="signupForm.controls.image.pristine || !signupForm.controls.image.hasError('required')" class="inputError">Image is required.</small>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" name="login" class="btn btn-default" [disabled]="!signupForm.valid">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        
+
     </div>
-</div>
+</div> 
+<!--End register-area -->
+
+<app-footer></app-footer>

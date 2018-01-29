@@ -60,7 +60,7 @@
 <!-- Body content -->
 
 <!--Start header -->
-<app-header></app-header>       
+<!-- <app-header></app-header> -->
 <!--End header -->
 
 <!-- Start of nav bar -->
@@ -68,27 +68,27 @@
 <!-- End of nav bar -->
 
 <!-- Start slider  area-->
-<app-slider></app-slider>
+<app-slider (deskFilter)="onDeskFilter($event)"></app-slider>
 <!-- End slider area -->
 
 <!-- property area start-->
-<app-properties></app-properties>
+<app-properties [filter]="deskFilter" (geoCodes)="onGeoCode($event)"></app-properties>
 <!-- Property area end -->
 
 <!--Start Welcome area -->
-<app-welcome></app-welcome>
+<!-- <app-welcome></app-welcome> -->
 <!--End Welcome area -->
 
 <!--Start Testimonials -->
-<app-testimonials></app-testimonials>
+<!-- <app-testimonials></app-testimonials> -->
 <!--End Testimonials -->
 
 <!-- Start Count area -->
-<app-counts></app-counts>
+<!-- <app-counts></app-counts> -->
 <!-- Start Count area -->
 
 <!-- Start sale area -->
-<app-sale></app-sale>
+<!-- <app-sale></app-sale> -->
 <!-- End sale area -->
 
 <!--Start Footer area-->

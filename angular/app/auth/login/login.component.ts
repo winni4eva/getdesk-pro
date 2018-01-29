@@ -38,8 +38,8 @@ export class LoginComponent implements OnInit {
             password: new FormControl('', [Validators.required,Validators.minLength(4)])
         });
 
-        if(this._storageService.get('gdToken'))
-            this._router.navigate(['/dashboard']);
+        //if(this._storageService.get('gdToken'))
+            //this._router.navigate(['/dashboard']);
     }
 
     login(model: LoginInterface, isValid: boolean){

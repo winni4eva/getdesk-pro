@@ -13,13 +13,13 @@ export class DeskService{
     constructor(private _http: Http){}
 
     getCategories(){
-        return this._http.get( '/api/v1/categories')
+        return this._http.get( '/api/categories')
             .map(this.extractData)
             .catch(this.handleError);
     }
 
     getSubCategories(categoryId){
-        return this._http.get( '/api/v1/sub_categories/'+categoryId)
+        return this._http.get( '/api/sub_categories/'+categoryId)
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -37,7 +37,7 @@ export class DeskService{
     }
 
     getAmenities(){
-        return this._http.get( '/api/v1/amenities')
+        return this._http.get( '/api/amenities')
             .map(this.extractData)
             .catch(this.handleError);
     }

@@ -42,13 +42,14 @@ import { TestimonialsComponent } from './testimonials/testimonials.component';
 import { CountsComponent } from './counts/counts.component';
 import { SaleComponent } from './sale/sale.component';
 import { PreloaderComponent } from './preloader/preloader.component';
+import { DisplayComponent } from './display/display.component';
 
 @NgModule({
   declarations: [
     AppComponent, LoginComponent, SignupComponent, HeaderComponent,
     FooterComponent, HomeComponent, DashboardComponent, DeskComponent,
     NewDeskComponent, ReviewsComponent, ViewDesksComponent, TabsComponent,
-    TabsContentComponent, TabsHeaderComponent, MapToKeysPipe, CSSCarouselComponent, NavComponent, SliderComponent, PropertiesComponent, WelcomeComponent, TestimonialsComponent, CountsComponent, SaleComponent, PreloaderComponent,
+    TabsContentComponent, TabsHeaderComponent, MapToKeysPipe, CSSCarouselComponent, NavComponent, SliderComponent, PropertiesComponent, WelcomeComponent, TestimonialsComponent, CountsComponent, SaleComponent, PreloaderComponent, DisplayComponent,
   ],
   imports: [
     BrowserAnimationsModule,

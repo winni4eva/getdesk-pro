@@ -33,6 +33,9 @@ Route::group(['namespace' => 'Auth'], function () {
 Route::group(['namespace' => 'Api\V1'], function () {
     Route::get('listings','ListingsController@index');
     Route::post('listings/search', 'ListingsController@searchListings');
+    Route::get('categories','CategoriesController@index');
+    Route::get('sub_categories','SubCategoriesController@index');
+    Route::get('amenities','AmenitiesController@index');
 });
 
 Route::group(['prefix' => 'v1', 'namespace' => 'Api\V1', 'middleware' => 'auth:api'], function () {
