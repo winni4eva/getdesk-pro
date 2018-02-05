@@ -13,6 +13,21 @@ import {ToasterService} from 'angular2-toaster';
 export class DashboardComponent implements OnInit {
 
     userDetails: Object = {};
+    nav:Array<any>= [
+        {
+          heading: 'desks',
+          fields: [
+            {name: 'view', navigation: ['/dashboard/desks/view']},
+            {name: 'add', navigation: ['/dashboard/desks/new']},
+          ]
+        },
+        {
+          heading: 'reviews',
+          fields: [
+            {name: 'view', navigation: ['/dashboard/desks']},
+          ]
+        },
+      ];
 
     constructor(private _router: Router,
                 private _storage: StorageService,

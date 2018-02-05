@@ -9,7 +9,7 @@ import {DeskService} from '../desks.service';
 import {FormGroupValidator} from '../../../shared/validator/formGroupValidator';
 
 @Component({
-    selector: 'new-desk',
+    selector: 'app-new-desk',
     templateUrl: './new-desk.component.html'
 })
 export class NewDeskComponent implements OnInit {

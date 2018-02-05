@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import {DeskService} from '../dashboard/desks/desks.service';
 
@@ -15,9 +15,17 @@ export class SliderComponent implements OnInit {
   categories: Array<any>=[];
   subCategories: Array<any>=[];
   deskFilterForm;
+  title: string = '';
+  lat: number = 5.550380568997962;
+  lng: number = -0.15380859375;
+  @Input("geoCodes") codes: Array<any> = [];
+  form;
+  zoom: number = 3;
   @Output('deskFilter') deskFilter: EventEmitter<any>= new EventEmitter;
 
-  constructor(private _fb: FormBuilder, private _deskService: DeskService) { }
+  constructor(
+            private _fb: FormBuilder, 
+            private _deskService: DeskService) { }
 
   ngOnInit() {
     this.deskFilterForm = this._fb.group({
@@ -117,6 +125,10 @@ export class SliderComponent implements OnInit {
 
   getValue(control){
     return control;
+  }
+
+  clickedMarker(label: string, index: number) {
+      console.log(`clicked the marker: ${label || index}`)
   }
 
 }

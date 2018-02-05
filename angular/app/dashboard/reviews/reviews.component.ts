@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import {Router} from '@angular/router';
-import {StorageService} from '../../../shared/storage/storage.service';
+import {StorageService} from '../../shared/storage/storage.service';
 import {ToasterService} from 'angular2-toaster';
 
 @Component({

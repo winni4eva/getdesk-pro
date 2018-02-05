@@ -12,13 +12,12 @@ export const dashboard_routes: Routes = [
         children: [
             {path: '', component: DeskComponent},
             {
-                path: 'desks', 
-                component: DeskComponent, 
+                path: 'desks',component: DeskComponent, 
                 children: [
                     {path: 'new', component: NewDeskComponent},
                     {path: 'view', component: ViewDesksComponent},
                     {path: '', component: ViewDesksComponent}, 
-                ]
+                ],
             },
             //{path: '', component: MainComponent, outlet: 'header'}
         ],

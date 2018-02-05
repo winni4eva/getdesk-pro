@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 
 @Component({
   selector: 'app-nav',
@@ -8,6 +8,9 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
+  @Input('navEnabled') navEnabled: boolean = false;
+  @Input('authEnabled') authEnabled: boolean = true;
+  @Input('navigation') navigation: Array<any> = [];
   constructor() { }
 
   ngOnInit() {

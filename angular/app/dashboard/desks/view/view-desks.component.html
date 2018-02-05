@@ -1,45 +1,58 @@
 
-<div class="container-fluid">
-    <div class="row col-md-9" style="margin: 0px 10px 0px 80px">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Availability</th>
-                    <th>Listing Name</th>
-                    <th>City</th>
-                    <th>Category</th>
-                    <th>Sub Category</th>
-                    <th>Opening Hours</th>
-                    <th>Amenities</th>
-                    <th>No. Occupants</th>
-                    <th>Image</th>
-                    <!-- <th>Action</th> -->
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let listing of listings">
-                    <td>{{listing?.availability}}</td>
-                    <td>{{listing?.name}}</td>
-                    <td>{{listing?.city}}</td>
-                    <td>{{listing?.category?.name}}</td>
-                    <td>{{listing?.sub_category?.name}}</td>
-                    <td>
+<div class="header-connect">
+    <div class="container">
+        <div class="row">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="s-property-title">Aval.</th>
+                        <th class="s-property-title">Title</th>
+                        <th class="s-property-title">City</th>
+                        <th class="s-property-title">Category</th>
+                        <th class="s-property-title">Opening Hrs</th>
+                        <th class="s-property-title">Amenities</th>
+                        <th class="s-property-title">Occupants</th>
+                        <th class="s-property-title">Image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let listing of listings">
+                        <td>{{listing?.availability}}</td>
+                        <td>{{listing?.name}}</td>
+                        <td>{{listing?.city}}</td>
+                        <td>{{listing?.category?.name}} / {{listing?.sub_category?.name}}</td>
+                        <td>
+                            <ul>
+                                <li *ngFor="let openingHour of listing?.opening_hours">
+                                    {{openingHour?.day?.name}} {{openingHour?.start_time?.time}} {{openingHour?.start_time?.period}} To
+                                    {{openingHour?.end_time?.time}} {{openingHour?.end_time?.period}}
+                                </li>
+                            </ul> 
+                        </td>
+                        <td>
+                            <ul *ngFor="let amenity of listing?.amenities">
+                                <li>{{amenity?.amenity?.amenity}}</li>
+                            </ul> 
+                        </td>
+                        <td>{{listing?.number_of_occupants}}</td>
+                        <td><img [src]="listing?.images[0]?.img_path" width="100" height="100"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="col-md-12"> 
+                <div class="pull-right">
+                    <div class="pagination">
                         <ul>
-                            <li *ngFor="let openingHour of listing?.opening_hours">
-                                {{openingHour?.day?.name}} {{openingHour?.start_time?.time}} {{openingHour?.start_time?.period}} To
-                                {{openingHour?.end_time?.time}} {{openingHour?.end_time?.period}}
-                            </li>
-                        </ul> 
-                    </td>
-                    <td>
-                        <ul *ngFor="let amenity of listing?.amenities">
-                            <li>{{amenity?.amenity?.amenity}}</li>
-                        </ul> 
-                    </td>
-                    <td>{{listing?.number_of_occupants}}</td>
-                    <td><img [src]="listing?.images[0]?.img_path" width="100" height="100"></td>
-                </tr>
-            </tbody>
-        </table>
+                            <li><a href="#">Prev</a></li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">Next</a></li>
+                        </ul>
+                    </div>
+                </div>                
+            </div>
+        </div>
     </div>
 </div>

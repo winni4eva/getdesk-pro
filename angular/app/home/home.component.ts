@@ -11,12 +11,12 @@ import {HomeService} from './home.service';
 })
 export class HomeComponent implements OnInit {
     
-    title: string = '';
-    lat: number = 5.550380568997962;
-    lng: number = -0.15380859375;
+    //title: string = '';
+    //lat: number = 5.550380568997962;
+    //lng: number = -0.15380859375;
     geoCodes: Array<any> = [];
     form;
-    zoom: number = 3;
+    //zoom: number = 3;
     deskFilter;
     
     constructor(private _homeService: HomeService,
@@ -37,9 +37,9 @@ export class HomeComponent implements OnInit {
         console.log(event)
     }
 
-    clickedMarker(label: string, index: number) {
-        console.log(`clicked the marker: ${label || index}`)
-    }
+    // clickedMarker(label: string, index: number) {
+    //     console.log(`clicked the marker: ${label || index}`)
+    // }
 
     onDeskFilter(event){
         this.deskFilter=event;

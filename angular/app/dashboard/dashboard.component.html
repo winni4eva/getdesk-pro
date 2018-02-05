@@ -27,7 +27,6 @@
             </div>
         </div>
 
-
         <router-outlet></router-outlet>
 
     <dash-footer></dash-footer>
@@ -45,3 +44,13 @@
 <div id="notif-group" class="tabbed_notifications"></div>
 </div>
 -->
+
+<!-- Start Preloader -->
+<app-preloader></app-preloader>
+<!-- End Preloader -->
+
+<!-- Start of nav bar -->
+<app-nav [navEnabled]="true" [authEnabled]="false" [navigation]="nav"></app-nav>
+<!-- End of nav bar -->
+
+<router-outlet></router-outlet>

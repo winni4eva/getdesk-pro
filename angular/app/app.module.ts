@@ -14,7 +14,7 @@ import {HomeComponent} from './home/home.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {DeskComponent} from './dashboard/desks/desks.component';
 import {NewDeskComponent} from './dashboard/desks/new/new-desk.component';
-import {ReviewsComponent} from './dashboard/desks/reviews/reviews.component';
+//import {ReviewsComponent} from './dashboard/desks/reviews/reviews.component';
 import {ViewDesksComponent} from './dashboard/desks/view/view-desks.component';
 import {TabsComponent} from './shared/tabs/tabs.component';
 import {TabsContentComponent} from './shared/tabs/tabs-content/tabs-content.component';
@@ -43,13 +43,14 @@ import { CountsComponent } from './counts/counts.component';
 import { SaleComponent } from './sale/sale.component';
 import { PreloaderComponent } from './preloader/preloader.component';
 import { DisplayComponent } from './display/display.component';
+import { PageHeaderComponent } from './page-header/page-header.component';
 
 @NgModule({
   declarations: [
     AppComponent, LoginComponent, SignupComponent, HeaderComponent,
     FooterComponent, HomeComponent, DashboardComponent, DeskComponent,
-    NewDeskComponent, ReviewsComponent, ViewDesksComponent, TabsComponent,
-    TabsContentComponent, TabsHeaderComponent, MapToKeysPipe, CSSCarouselComponent, NavComponent, SliderComponent, PropertiesComponent, WelcomeComponent, TestimonialsComponent, CountsComponent, SaleComponent, PreloaderComponent, DisplayComponent,
+    NewDeskComponent, ViewDesksComponent, TabsComponent,
+    TabsContentComponent, TabsHeaderComponent, MapToKeysPipe, CSSCarouselComponent, NavComponent, SliderComponent, PropertiesComponent, WelcomeComponent, TestimonialsComponent, CountsComponent, SaleComponent, PreloaderComponent, DisplayComponent, PageHeaderComponent,
   ],
   imports: [
     BrowserAnimationsModule,
