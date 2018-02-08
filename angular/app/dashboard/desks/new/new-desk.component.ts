@@ -10,7 +10,9 @@ import {FormGroupValidator} from '../../../shared/validator/formGroupValidator';
 
 @Component({
     selector: 'app-new-desk',
-    templateUrl: './new-desk.component.html'
+    templateUrl: './new-desk.component.html',
+    styleUrls:['./new-desk.component.css']
+
 })
 export class NewDeskComponent implements OnInit {
 

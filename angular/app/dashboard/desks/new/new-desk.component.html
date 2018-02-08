@@ -275,9 +275,10 @@
 
                         <div class="tab-content">
 
+                            <!--  Start step 1 -->
                             <div class="tab-pane" id="step1">
                                 <div class="row p-b-15  ">
-                                    <h4 class="info-text"> Let's start with the basic information (with validation)</h4>
+                                    <!-- <h4 class="info-text"> Let's start with the basic information (with validation)</h4>
                                     <div class="col-sm-4 col-sm-offset-1">
                                         <div class="picture-container">
                                             <div class="picture">
@@ -300,11 +301,114 @@
                                             <label>Telephone <small>(empty if you wanna use default phone number)</small></label>
                                             <input name="phone" type="text" class="form-control" placeholder="+1 473 843 7436">
                                         </div>
-                                    </div>
+                                    </div> -->
+
+                                    <form [formGroup]="newDeskForm" (ngSubmit)="addDeskDetails(newDeskForm.get('details').value, newDeskForm.get('details').hasError('validateGroup'))">
+                                    
+                                        <div formGroupName="details">
+                                            
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="name" >Property Name*</label>
+                                                    <input type="text" class="form-control" formControlName="name" placeholder="Enter Venue Name">
+                                                    <small class="errorAlert" [hidden]="newDeskForm.controls.details.controls.name.pristine || !newDeskForm.controls.details.controls.name.errors?.required">Property name is required</small>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="city" >Venue Location*</label>
+                                                    <input list="cities" class="form-control" formControlName="city" placeholder="Search Venue Location">
+                                                    <datalist id="cities">
+                                                        <option [value]="city?.description" *ngFor="let city of cities">{{city?.description}}</option>
+                                                    </datalist>
+                                                    <small class="errorAlert" [hidden]="newDeskForm.controls.details.controls.city.pristine || !newDeskForm.controls.details.controls.city.errors?.required">Location is required</small>
+                                                </div>
+                                                
+                                                <div class="form-group">
+                                                    <label for="category_id">Category*</label>
+                                                    <select class="form-control" formControlName="category_id" (change)="getSubCategories(newDeskForm.get('details').value.category_id)">
+                                                        <option value="">-- Select Category--</option>
+                                                        <option [value]="category?.id" *ngFor="let category of categories">{{category?.name}}</option>
+                                                    </select>
+                                                    <small class="errorAlert" [hidden]="newDeskForm.controls.details.controls.category_id.pristine || !newDeskForm.controls.details.controls.category_id.errors?.required">Category name is required</small>
+                                                </div>
+                                                
+                                                <div class="form-group">
+                                                    <label for="sub_category_id">Sub Category*</label>
+                                                    <select  class="form-control" formControlName="sub_category_id">
+                                                        <option value="">-- Select Sub Category --</option>
+                                                        <option [value]="category?.id" *ngFor="let category of subCategories">{{category?.name}}</option>
+                                                    </select>
+                                                    <small class="errorAlert" [hidden]="newDeskForm.controls.details.controls.sub_category_id.pristine || !newDeskForm.controls.details.controls.sub_category_id.errors?.required">Sub category is required</small>
+                                                </div>
+                                                
+                                                <div class="form-group">
+                                                    <label for="number_of_occupants">Number Of Occupants*</label>
+                                                    <select  class="form-control" formControlName="number_of_occupants">
+                                                        <option value="">-- Select Occupants --</option>
+                                                        <option value="{{occupant}}" *ngFor="let occupant of occupants">{{occupant}}</option>
+                                                    </select>
+                                                    <small class="errorAlert" [hidden]="newDeskForm.controls.details.controls.number_of_occupants.pristine || !newDeskForm.controls.details.controls.number_of_occupants.errors?.required">Number of occupants is required</small>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="col-md-6">
+                                                
+                                                
+                                
+                                                <button class="btn btn-primary" type="submit" name="btnSave" [disabled]="!newDeskForm.get('details').hasError('validateGroup')">Post</button>
+                                            </div>
+    
+                                            <div class="col-md-6">  
+
+                                                <label>Opening Hours*</label>
+                                                <div class="row" formArrayName="opening_hours">
+    
+                                                    <div *ngFor="let opening_hour of newDeskForm.controls.details.controls.opening_hours.controls; let i=index" [formGroupName]="i" class="img-thumbnail" style="width:200%">
+    
+                                                        <div class="pull-right">
+                                                            <span *ngIf="i > 0" 
+                                                                (click)="removeOpeningHour(i)"><i style="font-size:15px;cursor:pointer !important" class="glyphicon glyphicon-remove"></i>
+                                                            </span>
+                                                        </div>
+                                                        
+                                                        <div class="form-group">
+                                                            <select class="form-control pull-left" style="width:25% !important" formControlName="day_id" required="">
+                                                                <option value="">-- Select Day --</option>
+                                                                <option [value]="day?.id" *ngFor="let day of days">{{day?.name}}</option>
+                                                            </select>
+
+                                                            <select  class="form-control pull-left" style="width:25% !important" formControlName="times_id" required="">
+                                                                <option value="">-- Select Start Time --</option>
+                                                                <option [value]="time?.id" *ngFor="let time of times">{{time?.time +' '+ time?.period}}</option>
+                                                            </select>
+
+                                                            <select  class="form-control pull-left" style="width:25% !important" formControlName="end_time_id" required="">
+                                                                <option value="">-- Select End Time --</option>
+                                                                <option [value]="time?.id" *ngFor="let time of times">{{time?.time +' '+ time?.period}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+    
+                                                    <a class="btn btn-default pull-right" (click)="addOpeningHour()">Add Opening Hour</a>
+                                                </div>
+                                                        
+                                                <button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+                                                    <span class="glyphicon glyphicon-remove"></span> Clear
+                                                </button>
+                                                
+                                                <div class="form-group">
+                                                    <label>Select Image</label>
+                                                    <input type="file" accept="image/png, image/jpeg, image/gif" [formControlName]="end_time_id">
+                                                </div>
+                                                
+                                            </div> -->
+                                        </div>
+    
+                                    </form>
                                 </div>
                             </div>
                             <!--  End step 1 -->
 
+                            <!-- Start step 2 -->
                             <div class="tab-pane" id="step2">
                                 <h4 class="info-text"> How much your Property is Beautiful ? </h4>
                                 <div class="row">

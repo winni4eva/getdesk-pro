@@ -18,6 +18,13 @@ class SubCategoriesController extends BaseController
         $this->subCategoryService = $subCategoryService;
     }
 
+    public function index(int $categoryId){
+        
+        $subCategories = $this->subCategoryService->getSubCategories($categoryId);
+
+        return response()->json(compact('subCategories'));
+    }
+
     public function show(int $categoryId){
         
         $subCategories = $this->subCategoryService->getSubCategories($categoryId);
